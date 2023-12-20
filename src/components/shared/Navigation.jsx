@@ -18,12 +18,14 @@ export default function Navigation() {
       <div className="justify-between px-4 md:flex md:px-8 ">
         <div>
           <div className="flex items-center justify-between   md:block ">
-       <div className=''> <Image
+       <div className=''> 
+       <Image
       src={career}
       width={150}
       height={150}
       alt="Picture of the author"
-    /></div>
+    />
+    </div>
             <div className="md:hidden">
               <button
                 className="p-2  rounded-md outline-none focus:border-gray-400 focus:border"
@@ -71,13 +73,13 @@ export default function Navigation() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 ">
               <li className=" hover:text-black-600 focus:border-gray-100 cursor-pointer">
-                <Link smooth href="/">
+                <Link  href="/">
                   <span>Internships</span>
                 </Link>
               </li>
 
               <li className=" hover:text-black-600 cursor-pointer">
-                <Link smooth href="/about-us">
+                <Link  href="/about-us">
                   <span>Courses</span>
                 </Link>
               </li>
@@ -86,8 +88,8 @@ export default function Navigation() {
           <p  className="cursor-pointer">
           Register/Login
           </p>
-          <div className="absolute hidden shadow  px-5 py-5 space-y-3 rounded-md group-hover:block">
-            <Link href="/dropdown-link-1">Register as a Student</Link><br/>
+          <div className="absolute hidden shadow bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
+            <Link href="/signup">Register as a Student</Link><br/>
               <div> <Link  href="/dropdown-link-2 " >Register as a employer</Link></div><br />
             <Link href="/login">Login</Link>
           </div>
@@ -101,7 +103,7 @@ export default function Navigation() {
       height={50}
       alt="Picture of the author"
     />
-          <div className="absolute hidden  shadow-xl  px-5 space-y-4 py-3 rounded-md group-hover:block">
+          <div className="absolute hidden  shadow-xl bg-white  px-5 space-y-4 py-3 rounded-md group-hover:block">
           <div> <Link href="/dropdown-link-1">Profile</Link></div>
               <div> <Link  href="/dropdown-link-2 " >My Applications</Link></div>
            <div> <Link href="/login">Edit resume</Link></div>
@@ -110,7 +112,7 @@ export default function Navigation() {
           <p  className="cursor-pointer">
           Manage Account
           </p>
-          <div className="absolute hidden  shadow-xl  px-5 py-5 space-y-3 rounded-md group-hover:block">
+          <div className="absolute hidden  shadow-xl bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
             <Link href="/dropdown-link-1">Change Email</Link><br/>
               <div> <Link  href="/dropdown-link-2 " >Change password</Link></div><br />
             <Link href="/login">Logout</Link>

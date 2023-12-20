@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/shared/Navigation'
+import Footer from '@/components/shared/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           <Navigation></Navigation>
          <div  className='flex-grow flex-1'> {children}</div>
           {/* TODO Footer here */}
+          <Footer></Footer>
           </main>
        
        </body>
