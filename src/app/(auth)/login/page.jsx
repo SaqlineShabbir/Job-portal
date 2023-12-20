@@ -3,7 +3,7 @@ import React from 'react';
 
 const page = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="py-10 flex items-center justify-center bg-gray-100">
             <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
                 <h2 className="text-3xl font-bold font-mono mb-6 text-center underline decoration-pink-500 decoration-wavy">Login</h2>
                 <form>
@@ -30,7 +30,7 @@ const page = () => {
                         />
                     </div>
 
-                    <span className='text-lg text-blue-500 flex justify-end items-center cursor-pointer hover:underline'>Forgot Password ?</span><br />
+                    <Link href="/login/forgot-password" className='text-lg text-blue-500 flex justify-end items-center cursor-pointer hover:underline'>Forgot Password ?</Link><br />
 
                     <button
                         type="submit"

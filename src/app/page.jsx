@@ -1,4 +1,5 @@
 
+import CompanyShow from "@/components/Home/CompanyShow";
 import FrequentlyAsked from "@/components/Home/FrequentlyAsked";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import LatestIntern from "@/components/shared/LatestIntern";
@@ -11,7 +12,7 @@ export default function Home() {
         <h2>Hello World</h2>
         <LatestIntern />
         <LatestJobs />
-        {/* All the home page section here */}
+        <CompanyShow />
         <FrequentlyAsked></FrequentlyAsked>
       </div>
     </MaxWidthWrapper>
