@@ -1,9 +1,11 @@
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <p>This is login page</p>
+            <MaxWidthWrapper><p>This is login page</p></MaxWidthWrapper>
+            
         </div>
     );
 };
