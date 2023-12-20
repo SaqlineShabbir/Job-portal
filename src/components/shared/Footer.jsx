@@ -1,12 +1,18 @@
+import Image from "next/image";
 import React from "react";
-
+import  career from '../../assets/logos/career-removebg-preview.PNG'
 const Footer = () => {
   return (
     <footer className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-start lg:gap-8">
-          <div className="text-teal-600 dark:text-teal-300">
-            <h1>JoB porTal</h1>
+          <div className="text-teal-600 bg-white">
+          <Image  className="px-2 py-1"
+      src={career}
+      width={250}
+      height={190}
+      alt="Picture of the author"
+    />
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">

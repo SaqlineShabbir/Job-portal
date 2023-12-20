@@ -1,7 +1,7 @@
-import Footer from "@/components/Home/Fotter";
+
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import LatestIntern from "@/components/Home/LatestIntern";
-import LatestJobs from "@/components/Home/LatestJobs";
+import LatestIntern from "@/components/shared/LatestIntern";
+import LatestJobs from "@/components/shared/LatestJobs";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
         <LatestIntern />
         <LatestJobs />
         {/* All the home page section here */}
-        <Footer></Footer>
+
       </div>
     </MaxWidthWrapper>
   );
