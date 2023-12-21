@@ -50,9 +50,9 @@ const FrequentlyAsked = () => {
   return (
     <div className=" 2xl:container 2xl:mx-auto md:py-12  md:px-6  px-5 ">
       
-      <div className="">
+      <div className=" flex flex-col  justify-center items-center py-10">
        
-        <h2 className=" font-bolder text-xl md:text-3xl  lg:text-4xl text-blue-700  lg:leading-9 md:leading-7 leading-9  ">
+        <h2 className=" font-bolder text-xl md:text-3xl  lg:text-4xl  lg:leading-9 md:leading-7 leading-9  ">
         Frequently Asked Questions
       </h2>
           <p className=" font-normal text-base leading-6 text-gray-600  pt-4 ">
@@ -77,7 +77,7 @@ const FrequentlyAsked = () => {
                       onClick={() => setActive('')}
                       className="flex justify-between items-center "
                     >
-                      <h3 className=" w-4/5  text-xl leading-5 text-gray-800">
+                      <h3 className=" w-4/5  leading-5 ">
                         {data.title}
                       </h3>
                       {/* //plus svg */}
@@ -88,7 +88,7 @@ const FrequentlyAsked = () => {
                       onClick={() => setActive(data?.id)}
                       className="flex justify-between items-center "
                     >
-                      <h3 className=" w-4/5  text-xl leading-5 text-gray-800">
+                      <h3 className=" w-4/5   leading-5 ">
                         {data.title}
                       </h3>
                       

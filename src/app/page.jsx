@@ -9,11 +9,12 @@ export default function Home() {
   return (
     <MaxWidthWrapper className="">
       <div className="">
-        <h2>Hello World</h2>
+        
         <LatestIntern />
         <LatestJobs />
-        <CompanyShow />
+        
         <FrequentlyAsked></FrequentlyAsked>
+        <CompanyShow />
       </div>
     </MaxWidthWrapper>
   );
