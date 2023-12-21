@@ -17,7 +17,7 @@ export default function Navigation() {
     >
       <div className="  md:flex  justify-between items-center md:px-[100px] px-5 ">
         <div>
-
+    {/* comment */}
           <div className="flex items-center justify-between  md:block ">
        <div className='cursor-pointer'> 
       <Link href='/'> <Image
