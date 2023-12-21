@@ -13,18 +13,19 @@ export default function Navigation() {
   return (
     <nav
       id="home"
-      className="w-full  py-5 border-b-[1px] shadow"
+      className="w-full relative py-5 border-b-[1px] shadow"
     >
-      <div className="justify-between px-4 md:flex md:px-8 ">
+      <div className="  md:flex  justify-between items-center md:px-[150px] px-5 ">
         <div>
-          <div className="flex items-center justify-between   md:block ">
-       <div className=''> 
-       <Image
+
+          <div className="flex items-center justify-between  md:block ">
+       <div className='cursor-pointer'> 
+      <Link href='/'> <Image
       src={career}
       width={150}
       height={150}
       alt="Picture of the author"
-    />
+    /></Link>
     </div>
             <div className="md:hidden">
               <button
@@ -63,7 +64,11 @@ export default function Navigation() {
               </button>
             </div>
           </div>
+
+
         </div>
+
+        
         <div>
           {/* nav links */}
           <div
@@ -84,48 +89,45 @@ export default function Navigation() {
                 </Link>
               </li>
              
-          <div className="group relative  w-[250px]  h-full">
-          <p  className="cursor-pointer">
+          <li className="group relative    h-full">
+          <span  className="cursor-pointer">
           Register/Login
-          </p>
-          <div className="absolute hidden shadow bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
+          </span>
+          <span className="absolute hidden shadow bg-white w-[100px] px-5 py-5 space-y-3 rounded-md group-hover:block">
             <Link href="/signup">Register as a Student</Link><br/>
               <div> <Link  href="/dropdown-link-2 " >Register as a employer</Link></div><br />
             <Link href="/login">Login</Link>
-          </div>
-        </div>
+          </span>
+        </li>
       
         
-                <div className="group relative  w-[250px]  h-full">
-                <Image
-      src={img}
-      width={50}
-      height={50}
-      alt="Picture of the author"
-    />
-          <div className="absolute hidden  shadow-xl bg-white  px-5 space-y-4 py-3 rounded-md group-hover:block">
-          <div> <Link href="/dropdown-link-1">Profile</Link></div>
-              <div> <Link  href="/dropdown-link-2 " >My Applications</Link></div>
-           <div> <Link href="/login">Edit resume</Link></div>
-           <div> 
-            <li className="group relative  w-[200px]  h-full">
+      <li className="group relative    h-full bg-white">
+      <Image src={img} width={50} height={50}   alt="Picture of the author" />
+          <ul className="absolute hidden  shadow-xl bg-white  px-5 space-y-4 py-3 rounded-md group-hover:block">
+          <li> <Link href="/dropdown-link-1">Profile</Link></li>
+              <li> <Link  href="/dropdown-link-2 " >My Applications</Link></li>
+           <li> <Link href="/login">Edit resume</Link></li>
+           
+          <li className="group relative  w-[200px]  h-full">
           <p  className="cursor-pointer">
           Manage Account
           </p>
-          <div className="absolute hidden  shadow-xl bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
-            <Link href="/dropdown-link-1">Change Email</Link><br/>
-              <div> <Link  href="/dropdown-link-2 " >Change password</Link></div><br />
+          <ul className="absolute hidden  shadow-xl bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
+            <li><Link href="/dropdown-link-1">Change Email</Link></li><br/>
+              <li> <Link  href="/dropdown-link-2 " >Change password</Link></li><br />
             <Link href="/login">Logout</Link>
-          </div>
+          </ul>
         </li>
-        </div>
+        
+          </ul>
 
-          </div>
-        </div>
+        </li>
 
             </ul>
             
           </div>
+
+
         </div>
       </div>
     </nav>
