@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} relative h-full font-sans antialiased`}
       >
+        <Navigation></Navigation>
         <main className="relative flex flex-col min-h-screen ">
-          <Navigation></Navigation>
           <div className="flex-grow flex-1"> {children}</div>
           <Footer></Footer>
         </main>

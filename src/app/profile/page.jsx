@@ -25,7 +25,25 @@ const Page = () => {
         </div>
 
         {/* Resume Education Start */}
-        <div></div>
+        <div className="flex flex-row">
+          <div className="basis-3/12">
+            <p>Education</p>
+          </div>
+          <div className="basis-9/12 flex justify-between">
+            <div className="">
+              <h1>Secondary (X)</h1>
+              <p>NIOS board</p>
+              <p>NIOS board</p>
+              <p>Year of completion: 2023</p>
+              <button>Add Education</button>
+            </div>
+            <div className="">
+              <button>?</button>
+              <button>?</button>
+            </div>
+          </div>
+        </div>
+
         <div></div>
         <div></div>
         <div></div>
