@@ -88,6 +88,32 @@ const Page = () => {
             </div>
           </div>
         </div>
+        {/* Responsibility section start */}
+        <div className="flex flex-row mt-6 border-b pb-6 text-gray-500">
+          <div className="basis-3/12">
+            <p className=" ">POSITIONS OF RESPONSIBILITY </p>
+          </div>
+          <div className="basis-9/12 flex justify-between">
+            <div className="w-3/4">
+              <h1 className="text-black font-bold">Time Sincere</h1>
+
+              <div className="flex">
+                <button className="flex font-semibold text-blue-600 justify-center align-middle my-3">
+                  <FaPlus className="mt-1 me-2" /> Add position of <br />
+                  responsibility
+                </button>
+              </div>
+            </div>
+            <div className="text-lg">
+              <button className="me-5 ">
+                <FiEdit2 />
+              </button>
+              <button>
+                <RiDeleteBinLine />
+              </button>
+            </div>
+          </div>
+        </div>
 
         <div></div>
         <div></div>
