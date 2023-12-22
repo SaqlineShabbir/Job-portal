@@ -52,6 +52,43 @@ const Page = () => {
           </div>
         </div>
 
+        {/* Work expresience section start */}
+        <div className="flex flex-row mt-6 border-b pb-6 text-gray-500">
+          <div className="basis-3/12">
+            <p className=" ">WORK EXPERIENCE </p>
+            <p>(3 MONTHS) </p>
+          </div>
+          <div className="basis-9/12 flex justify-between">
+            <div className="w-3/4">
+              <h1 className="text-black font-bold">WebDeveloper</h1>
+              <p>CeMRD, Virtual</p>
+              <p> Job • Oct 2023 - Present (3 months) </p>
+              <p>
+                Joined CeMRD in October as a full-stack web developer with 3
+                years of expertise in JavaScript, React JS, Next JS, Express JS,
+                Mongoose, Tailwind CSS, Node JS, and TypeScript. Passionate
+                about innovation in a dynamic environment
+              </p>
+              <div className="flex">
+                <button className="flex font-semibold text-blue-600 justify-center align-middle my-3">
+                  <FaPlus className="mt-1 me-2" /> Add Job
+                </button>
+                <button className="flex ms-8 font-semibold text-blue-600 justify-center align-middle my-3">
+                  <FaPlus className="mt-1 me-2" /> Add Internship
+                </button>
+              </div>
+            </div>
+            <div className="text-lg">
+              <button className="me-5 ">
+                <FiEdit2 />
+              </button>
+              <button>
+                <RiDeleteBinLine />
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div></div>
         <div></div>
         <div></div>
