@@ -1,6 +1,8 @@
 import "../globals.css";
 import { FiDownload } from "react-icons/fi";
-
+import { FaPlus } from "react-icons/fa6";
+import { FiEdit2 } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
 const Page = () => {
   return (
     <div className="lg:px-52">
@@ -25,21 +27,27 @@ const Page = () => {
         </div>
 
         {/* Resume Education Start */}
-        <div className="flex flex-row">
+        <div className="flex flex-row mt-6 border-b pb-6 text-gray-500">
           <div className="basis-3/12">
-            <p>Education</p>
+            <p className=" ">Education</p>
           </div>
           <div className="basis-9/12 flex justify-between">
             <div className="">
-              <h1>Secondary (X)</h1>
-              <p>NIOS board</p>
+              <h1 className="text-black font-bold">Secondary (X)</h1>
               <p>NIOS board</p>
               <p>Year of completion: 2023</p>
-              <button>Add Education</button>
+              <p>CGPA: 5.00/5</p>
+              <button className="flex font-semibold text-blue-600 justify-center align-middle my-3">
+                <FaPlus className="mt-1 me-2" /> Add Education
+              </button>
             </div>
-            <div className="">
-              <button>?</button>
-              <button>?</button>
+            <div className="text-lg">
+              <button className="me-5 ">
+                <FiEdit2 />
+              </button>
+              <button>
+                <RiDeleteBinLine />
+              </button>
             </div>
           </div>
         </div>
