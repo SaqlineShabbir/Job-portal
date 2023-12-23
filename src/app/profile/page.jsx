@@ -7,7 +7,7 @@ const Page = () => {
   return (
     <div className="lg:px-52">
       <h1 className="text-5xl text-center">Resume</h1>
-      <button className="border mt-10 w-full font-semibold text-blue-500 border-blue-400 px-10 py-5">
+      <button className="border mt-3 w-full font-semibold text-blue-500 border-blue-400 px-10 py-5">
         Download Resume
       </button>
       <div className="border border-slate-100 px-[72px] py-[48px]">
@@ -160,8 +160,7 @@ const Page = () => {
         <div className="flex flex-row mt-6 border-b pb-6 text-gray-500">
           <div className="basis-3/12">
             <p className=" ">
-              ACCOMPLISHMENTS/ <br />
-              ADDITIONAL DETAILS{" "}
+              ADDITIONAL <br /> DETAILS{" "}
             </p>
           </div>
           <div className="basis-9/12 flex justify-between">
