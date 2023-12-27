@@ -4,6 +4,7 @@ import { FaBoltLightning, FaLocationDot } from 'react-icons/fa6';
 import { MdOutlineSlowMotionVideo, MdOutlineTurnSlightRight } from 'react-icons/md';
 import { SlCalender } from "react-icons/sl";
 import { CiClock2 } from "react-icons/ci";
+import Link from 'next/link';
 const InternCard = ({intern}) => {
     
     return (
@@ -20,17 +21,17 @@ const InternCard = ({intern}) => {
            </div>
            
            {/* startdate */}
-          <div className='flex space-x-8'>
+          <div className='md:flex md:space-x-8'>
           
-           <div className=' space-x-1 items-center'>
-           <div   className='flex items-center   space-x-2'>
+           <div className=' space-x-1 items-center flex md:flex-col'>
+           <div   className='flex items-center space-x-2'>
            <MdOutlineSlowMotionVideo size={13} />  
            <p className='text-sm'>START DATE</p>
            </div>
            <p className='text-sm'>{intern.starts}</p>
            </div>
            {/* // */}
-           <div className=' space-x-1 items-center'>
+           <div className=' space-x-1 items-center  flex  md:flex-col'>
            <div   className='flex items-center space-x-2'>
            <SlCalender  size={13} />  
            <p className='text-sm'>DURATION</p>
@@ -38,7 +39,7 @@ const InternCard = ({intern}) => {
            <p className='text-sm'>{intern.duration}</p>
            </div>
            {/* // */}
-           <div className=' space-x-1 items-center'>
+           <div className=' space-x-1 items-center flex md:flex-col'>
            <div   className='flex items-center space-x-2'>
            <FaMoneyCheckAlt size={13} />  
            <p className='text-sm'>STIPEND</p>
@@ -47,7 +48,7 @@ const InternCard = ({intern}) => {
            </div>
           </div>
       {/* // */}
-          <div className='flex   space-x-5'>
+          <div className='md:flex   md:space-x-5 space-y-3  md:space-y-0'>
             <div  className='flex items-center space-x-1'>
             <CiClock2 size={13} />
                 <p>{intern.postedAt}</p>
@@ -65,7 +66,7 @@ const InternCard = ({intern}) => {
           {/* // */}
 
           <div className='flex justify-between'>
-            <button className='px-5 py-2 text-sm text-blue-400'>View details</button>
+           <Link href={`/internships/${intern.id}`}> <button className='px-5 py-2 text-sm text-blue-400'>View details</button></Link>
             <button className='px-5 py-2 text-sm text-blue-400 shadow'>Apply now</button>
           </div>
            

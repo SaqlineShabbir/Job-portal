@@ -77,7 +77,7 @@ export default function Navigation() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 ">
               <li className=" hover:text-black-600 focus:border-gray-100 cursor-pointer">
-                <Link href="/">
+                <Link href="/internships">
                   <span>Internships</span>
                 </Link>
               </li>
