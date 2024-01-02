@@ -1,12 +1,37 @@
+'use client'
+import { AxiosInstance } from '@/utils/axios/axiosInstance';
+import Cookies from 'js-cookie';
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 const page = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+
+    //handlesubmit
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await AxiosInstance.post('/auth/login', {
+                email,
+                password
+            })
+            const accessToken = Cookies.get('accessToken');
+            console.log(res)
+            console.log(accessToken)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <div className="py-10 flex items-center justify-center bg-gray-100">
             <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
                 <h2 className="text-3xl font-bold font-mono mb-6 text-center underline decoration-pink-500 decoration-wavy">Login</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-lg font-medium text-gray-600">
                             Username or Email
@@ -16,6 +41,7 @@ const page = () => {
                             id="username"
                             name="username"
                             className="mt-1 p-2 w-full border rounded-md"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
@@ -27,6 +53,7 @@ const page = () => {
                             id="password"
                             name="password"
                             className="mt-1 p-2 w-full border rounded-md"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 

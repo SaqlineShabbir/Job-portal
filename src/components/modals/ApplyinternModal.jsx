@@ -1,10 +1,47 @@
-import React from 'react';
-import closeImg from '../../assets/images/close-icon.png';
+'use client'
+import React, { useState } from 'react';
+
 import { IoIosCloseCircle } from 'react-icons/io';
 import Link from 'next/link';
+import { FormEvent } from 'react'
+import { AxiosInstance } from '@/utils/axios/axiosInstance';
 const ApplyinternModal = ({ setOpenmodal, intern }) => {
-    console.log(intern)
+    const [checkedvalue, setCheckedValue] = useState('')
+    const [checkbox1, setCheckbox1] = useState(false);
+    const [checkbox2, setCheckbox2] = useState(false);
+    const handleCheckbox1Change = () => {
+        setCheckedValue('Yes i am available to join immediately')
+        setCheckbox1(!checkbox1);
+        setCheckbox2(false);
+    };
 
+    const handleCheckbox2Change = (e) => {
+
+        setCheckedValue('No im not available right now')
+        setCheckbox2(!checkbox2);
+        setCheckbox1(false);
+    };
+
+    //     try{
+    //         const formData = new FormData();
+
+    //         formData.append('avatar',image);
+    //         formData.append('name',name)
+    //         formData.append('email',email)
+    //         formData.append('password',password)
+    //         formData.append('dateofbirth',date)
+
+    //      const result = await AxiosInstance.post('/signup',formData)
+    //          //navigate user to home page
+    //          console.log(result)
+    //    if(result.statusText ==="Created"){
+    //     storeTokenToLS(result.data.token)
+    //     console.log(result)
+    //     navigate("/")
+    //    }
+    //     }catch(err){
+    //         console.log(err)
+    //     }
     return (
         <div
             id="close"
@@ -44,9 +81,10 @@ const ApplyinternModal = ({ setOpenmodal, intern }) => {
                         <label className="flex items-center space-x-2">
                             <input
                                 type="checkbox"
+                                value={'yes'}
                                 className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
-                            //   checked={isChecked}
-                            //   onChange={handleCheckboxChange}
+                                checked={checkbox1}
+                                onChange={handleCheckbox1Change}
                             />
                             <span className="text-sm font-medium text-gray-700">Yes i am available to join immediately</span>
                         </label>
@@ -56,8 +94,8 @@ const ApplyinternModal = ({ setOpenmodal, intern }) => {
                             <input
                                 type="checkbox"
                                 className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
-                            //   checked={isChecked}
-                            //   onChange={handleCheckboxChange}
+                                checked={checkbox2}
+                                onChange={handleCheckbox2Change}
                             />
                             <span className="text-sm font-medium text-gray-700">No  im not available right now</span>
                         </label>
