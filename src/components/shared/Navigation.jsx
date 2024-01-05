@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
 import img from '../../assets/images/user-profile-icon-free-vector.JPG'
 import career from '../../assets/logos/career-removebg-preview.PNG'
 import Image from 'next/image';
+import { AuthContext } from '@/context/AuthProvider';
 export default function Navigation() {
   const [navbar, setNavbar] = useState(false);
 
-
-
+  const { LogoutUser, user } = useContext(AuthContext)
+  console.log('user from   nevigation', user)
   return (
     <nav
       id="home"
@@ -17,16 +18,16 @@ export default function Navigation() {
     >
       <div className="  md:flex  justify-between items-center md:px-[100px] px-5 ">
         <div>
-    {/* comment */}
+          {/* comment */}
           <div className="flex items-center justify-between  md:block ">
-       <div className='cursor-pointer'> 
-      <Link href='/'> <Image
-      src={career}
-      width={150}
-      height={150}
-      alt="Picture of the author"
-    /></Link>
-    </div>
+            <div className='cursor-pointer'>
+              <Link href='/'> <Image
+                src={career}
+                width={150}
+                height={150}
+                alt="Picture of the author"
+              /></Link>
+            </div>
             <div className="md:hidden">
               <button
                 className="p-2  rounded-md outline-none focus:border-gray-400 focus:border"
@@ -68,7 +69,7 @@ export default function Navigation() {
 
         </div>
 
-        
+
         <div>
           {/* nav links */}
           <div
@@ -87,40 +88,40 @@ export default function Navigation() {
                   <span>Courses</span>
                 </Link>
               </li>
-             
-          <li className="group relative    h-full">
-          <span  className="cursor-pointer">
-          Register/Login
-          </span>
-          <span className="absolute hidden shadow bg-white w-[100px] px-5 py-5 space-y-3 rounded-md group-hover:block">
-            <Link href="/signup">Register as a Student</Link><br/>
-              <div> <Link  href="/dropdown-link-2 " >Register as a employer</Link></div><br />
-            <Link href="/login">Login</Link>
-          </span>
-        </li>
-      
-        
-      <li className="group relative    h-full bg-white">
-      <Image src={img} width={50} height={50}   alt="Picture of the author" />
-          <ul className="absolute hidden  shadow-xl bg-white  px-5 space-y-4 py-3 rounded-md group-hover:block">
-          <li> <Link href="/dashboard">Profile</Link></li>
-              <li> <Link  href="/dropdown-link-2 " >My Applications</Link></li>
-           <li> <Link href="/login">Edit resume</Link></li>
-           
-          <li className="group relative  w-[200px]  h-full">
-          <p  className="cursor-pointer">
-          Manage Account
-          </p>
-          <ul className="absolute hidden  shadow-xl bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
-            <li><Link href="/dropdown-link-1">Change Email</Link></li><br/>
-              <li> <Link  href="/dropdown-link-2 " >Change password</Link></li><br />
-            <Link href="/login">Logout</Link>
-          </ul>
-        </li>
-        
-          </ul>
 
-        </li>
+              {!user?.email && <li className="group relative    h-full">
+                <span className="cursor-pointer">
+                  Register/Login
+                </span>
+                <span className="absolute hidden shadow bg-white w-[100px] px-5 py-5 space-y-3 rounded-md group-hover:block">
+                  <Link href="/signup">Register as a Student</Link><br />
+                  <div> <Link href="/dropdown-link-2 " >Register as a employer</Link></div><br />
+                  <Link href="/login">Login</Link>
+                </span>
+              </li>}
+
+
+              <li className="group relative    h-full bg-white">
+                <Image src={img} width={50} height={50} alt="Picture of the author" />
+                <ul className="absolute hidden  shadow-xl bg-white  px-5 space-y-4 py-3 rounded-md group-hover:block">
+                  <li> <Link href="/dashboard">Profile</Link></li>
+                  <li> <Link href="/dropdown-link-2 " >My Applications</Link></li>
+                  <li> <Link href="/login">Edit resume</Link></li>
+
+                  <li className="group relative  w-[200px]  h-full">
+                    <p className="cursor-pointer">
+                      Manage Account
+                    </p>
+                    <ul className="absolute hidden  shadow-xl bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
+                      <li><Link href="/dropdown-link-1">Change Email</Link></li><br />
+                      <li> <Link href="/dropdown-link-2 " >Change password</Link></li><br />
+                      <Link onClick={LogoutUser} href="/login">Logout</Link>
+                    </ul>
+                  </li>
+
+                </ul>
+
+              </li>
 
             </ul>
 

@@ -2,10 +2,13 @@
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Cookies from 'js-cookie';
 
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
 
 const page = () => {
+    const router = useRouter()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -17,10 +20,14 @@ const page = () => {
             const res = await AxiosInstance.post('/auth/login', {
                 email,
                 password
+            }, {
+                withCredentials: true
             })
-            const accessToken = Cookies.get('accessToken');
+
+            if (res.data.status === 'success') {
+                router.push('/');
+            }
             console.log(res)
-            console.log(accessToken)
 
         } catch (err) {
             console.log(err)
@@ -60,6 +67,7 @@ const page = () => {
                     <Link href="/login/forgot-password" className='text-lg text-blue-500 flex justify-end items-center cursor-pointer hover:underline'>Forgot Password ?</Link><br />
 
                     <button
+
                         type="submit"
                         className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 duration-500 text-lg font-semibold"
                     >

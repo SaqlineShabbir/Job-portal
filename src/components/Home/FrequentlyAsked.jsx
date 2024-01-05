@@ -49,27 +49,27 @@ const FrequentlyAsked = () => {
 
   return (
     <div className=" 2xl:container 2xl:mx-auto md:py-12  md:px-6  px-5 ">
-      
+
       <div className=" flex flex-col  justify-center items-center py-10">
-       
+
         <h2 className=" font-bolder text-xl md:text-3xl  lg:text-4xl  lg:leading-9 md:leading-7 leading-9  ">
-        Frequently Asked Questions
-      </h2>
-          <p className=" font-normal text-base leading-6 text-gray-600  pt-4 ">
-            Here are few of the most frequently asked questions by our valueable
-            users
-          </p>
-       
+          Frequently Asked Questions
+        </h2>
+        <p className=" font-normal text-base leading-6 text-gray-600  pt-4 ">
+          Here are few of the most frequently asked questions by our valueable
+          users
+        </p>
+
       </div>
       <div className=" flex flex-col justify-center items-center  md:flex-row  md:mt-16 mt-8 ">
         <div className="w-fit mx-0 md:mx-auto">
           {/* //image */}
         </div>
         <div className="   w-full md:mt-0 sm:mt-14 mt-10">
-         
+
 
           {datas.map((data) => (
-            <div>
+            <div key={data.id}>
               <div>
                 <div className=" cursor-pointer">
                   {active && data.id === active ? (
@@ -81,7 +81,7 @@ const FrequentlyAsked = () => {
                         {data.title}
                       </h3>
                       {/* //plus svg */}
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" /> </svg>
                     </div>
                   ) : (
                     <div
@@ -91,8 +91,8 @@ const FrequentlyAsked = () => {
                       <h3 className=" w-4/5   leading-5 ">
                         {data.title}
                       </h3>
-                      
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" /> </svg>
                     </div>
                   )}
                 </div>

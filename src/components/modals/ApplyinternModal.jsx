@@ -5,7 +5,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import Link from 'next/link';
 import { FormEvent } from 'react'
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
-const ApplyinternModal = ({ setOpenmodal, intern }) => {
+const ApplyinternModal = ({ setOpenmodal, job }) => {
     const [checkedvalue, setCheckedValue] = useState('')
     const [checkbox1, setCheckbox1] = useState(false);
     const [checkbox2, setCheckbox2] = useState(false);
@@ -58,7 +58,7 @@ const ApplyinternModal = ({ setOpenmodal, intern }) => {
 
 
                 <h1 className=" lg:text-3xl text-gray-700 mb-5">
-                    Applying for {intern.title}
+                    Applying for {job.title}
                 </h1>
                 <hr />
 
