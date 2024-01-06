@@ -2,15 +2,24 @@
 
 import { useContext, useState } from 'react';
 import Link from 'next/link';
-import img from '../../assets/images/user-profile-icon-free-vector.JPG'
 import career from '../../assets/logos/career-removebg-preview.PNG'
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
+import avatar from "@/assets/images/user.png";
+
+
 export default function Navigation() {
+
   const [navbar, setNavbar] = useState(false);
 
-  const { LogoutUser, user } = useContext(AuthContext)
-  console.log('user from   nevigation', user)
+  const { LogoutUser, user } = useContext(AuthContext);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <nav
       id="home"
@@ -65,8 +74,6 @@ export default function Navigation() {
               </button>
             </div>
           </div>
-
-
         </div>
 
 
@@ -89,40 +96,86 @@ export default function Navigation() {
                 </Link>
               </li>
 
-              {!user?.email && <li className="group relative    h-full">
-                <span className="cursor-pointer">
-                  Register/Login
-                </span>
-                <span className="absolute hidden shadow bg-white w-[100px] px-5 py-5 space-y-3 rounded-md group-hover:block">
-                  <Link href="/signup">Register as a Student</Link><br />
-                  <div> <Link href="/dropdown-link-2 " >Register as a employer</Link></div><br />
-                  <Link href="/login">Login</Link>
-                </span>
-              </li>}
+              {/* // register aqnd login section */}
+              {!user?.email && (
+                <li className="relative group h-full">
+                  <span className="cursor-pointer text-lg font-semibold text-gray-800 group-hover:text-purple-600">
+                    Register/Login
+                  </span>
 
+                  <div className="absolute hidden shadow-lg bg-white border border-gray-300 w-[200px] px-5 py-5 space-y-3 rounded-md group-hover:block transition-all duration-300 ease-in-out">
+                    <Link href="/signup" className="block text-gray-700 hover:text-purple-600">
+                      As a Student
+                    </Link>
+                    <Link href="/dropdown-link-2" className="block text-gray-700 hover:text-purple-600">
+                      As an Employer
+                    </Link>
+                    <Link href="/login" className="block text-gray-700 hover:text-purple-600">
+                      Login
+                    </Link>
+                  </div>
+                </li>
+              )}
 
-              <li className="group relative    h-full bg-white">
-                <Image src={img} width={50} height={50} alt="Picture of the author" />
-                <ul className="absolute hidden  shadow-xl bg-white  px-5 space-y-4 py-3 rounded-md group-hover:block">
-                  <li> <Link href="/dashboard">Profile</Link></li>
-                  <li> <Link href="/dropdown-link-2 " >My Applications</Link></li>
-                  <li> <Link href="/login">Edit resume</Link></li>
+              {/* -------------------------------- */}
 
-                  <li className="group relative  w-[200px]  h-full">
-                    <p className="cursor-pointer">
-                      Manage Account
-                    </p>
-                    <ul className="absolute hidden  shadow-xl bg-white  px-5 py-5 space-y-3 rounded-md group-hover:block">
-                      <li><Link href="/dropdown-link-1">Change Email</Link></li><br />
-                      <li> <Link href="/dropdown-link-2 " >Change password</Link></li><br />
-                      <Link onClick={LogoutUser} href="/login">Logout</Link>
-                    </ul>
+              <div className="group relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded-md p-4">
+                {user && (
+                  <div className="flex items-center space-x-4">
+                    <div className="w-14 h-14">
+                      <Image src={avatar} alt="user-icon" />
+                    </div>
+                    <div>
+                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600">
+                        Welcome, {user.name}
+                      </p>
+                      <p className="text-sm text-gray-500 group-hover:text-purple-600">
+                        {user.email}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <ul className="absolute hidden shadow-md bg-white px-4 py-2 rounded-md group-hover:block space-y-2">
+                  <li className="hover:text-purple-600">
+                    <Link href="/dashboard" className="block px-2 py-1">
+                      Profile
+                    </Link>
+                  </li>
+                  <li className="hover:text-purple-600">
+                    <Link href="/dashboard/application" className="block px-2 py-1">
+                      My Applications
+                    </Link>
+                  </li>
+                  <li className="hover:text-purple-600">
+                    <Link href="/dashboard/resume" className="block px-2 py-1">
+                      Edit Resume
+                    </Link>
                   </li>
 
+                  <div className="group relative w-36">
+                    <p
+                      className="cursor-pointer hover:text-purple-600 px-2 py-1"
+                      onClick={toggleDropdown}
+                    >
+                      Manage Account
+                    </p>
+                    {isDropdownOpen && (
+                      <ul className="absolute shadow-md bg-white px-3 py-2 rounded-md mt-2 space-y-2">
+                        <li className="hover:text-purple-600 transition duration-300">
+                          <Link href="/login/change-email" className="block px-2 py-1">Change Email</Link>
+                        </li>
+                        <li className="hover:text-purple-600 transition duration-300">
+                          <Link href="/login/forgot-password" className="block px-2 py-1">Change Password</Link>
+                        </li>
+                        <li className="hover:text-purple-600 transition duration-300">
+                          <Link onClick={LogoutUser} href="/login" className="block px-2 py-1">Logout</Link>
+                        </li>
+                      </ul>
+                    )}
+                  </div>
                 </ul>
-
-              </li>
-
+              </div>
             </ul>
 
           </div>
