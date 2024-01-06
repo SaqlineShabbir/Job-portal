@@ -10,7 +10,7 @@ export default function Navigation() {
   const [navbar, setNavbar] = useState(false);
 
   const { LogoutUser, user } = useContext(AuthContext)
-  console.log('user from   nevigation', user)
+
   return (
     <nav
       id="home"

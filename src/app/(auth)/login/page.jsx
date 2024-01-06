@@ -35,7 +35,7 @@ const page = () => {
     }
 
     return (
-        <div className="py-10 flex items-center justify-center bg-gray-100">
+        <div className="py-10  lg:min-h-[100vh] flex items-center justify-center bg-gray-100">
             <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
                 <h2 className="text-3xl font-bold font-mono mb-6 text-center underline decoration-pink-500 decoration-wavy">Login</h2>
                 <form onSubmit={handleSubmit}>
