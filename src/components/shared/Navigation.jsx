@@ -5,16 +5,16 @@ import Link from 'next/link';
 import career from '../../assets/logos/career-removebg-preview.PNG'
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
-import avatar from "@/assets/images/user.png";
+import { FaRegUserCircle } from "react-icons/fa";
 
 
 export default function Navigation() {
 
   const [navbar, setNavbar] = useState(false);
 
-  const { LogoutUser, user } = useContext(AuthContext);
-
+  const { LogoutUser, user } = useContext(AuthContext)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  console.log(user)
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -122,16 +122,14 @@ export default function Navigation() {
               <div className="group relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded-md p-4">
                 {user && (
                   <div className="flex items-center space-x-4">
-                    <div className="w-14 h-14">
-                      <Image src={avatar} alt="user-icon" />
+                    <div>
+                      <FaRegUserCircle />
                     </div>
                     <div>
                       <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600">
-                        Welcome, {user.name}
+                        {user?.email}
                       </p>
-                      <p className="text-sm text-gray-500 group-hover:text-purple-600">
-                        {user.email}
-                      </p>
+
                     </div>
                   </div>
                 )}
@@ -166,7 +164,7 @@ export default function Navigation() {
                           <Link href="/login/change-email" className="block px-2 py-1">Change Email</Link>
                         </li>
                         <li className="hover:text-purple-600 transition duration-300">
-                          <Link href="/login/forgot-password" className="block px-2 py-1">Change Password</Link>
+                          <Link href="/login/update-password" className="block px-2 py-1">Change Password</Link>
                         </li>
                         <li className="hover:text-purple-600 transition duration-300">
                           <Link onClick={LogoutUser} href="/login" className="block px-2 py-1">Logout</Link>

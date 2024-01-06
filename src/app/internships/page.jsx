@@ -20,6 +20,10 @@ const page = () => {
         if (search) {
           queryString = `?title=${search}`
         }
+        // Add location filter if location is provided
+        if (location) {
+          queryString += `&locationtype=${location}`;
+        }
         const response = await AxiosInstance.get(`/jobs${queryString}`);
         //&page=1&jobtimetype=full-time&locationtype=Remote
         setJobs(response.data.data);
@@ -37,7 +41,7 @@ const page = () => {
     <div className='py-5 bg-gray-100 px-10 md:px-[200px] '>
       <div><h2>Home - Internships </h2></div>
       <div className='py-20 lg:flex justify-center lg:space-x-10 '>
-        <InternSidebar setSearch={setSearch}></InternSidebar>
+        <InternSidebar setSearch={setSearch} setLocation={setLocation}></InternSidebar>
         <div className='space-y-5 pt-20 md:pt-2'>
           <h2 className='text-center'>6318 Total Internships</h2>
 

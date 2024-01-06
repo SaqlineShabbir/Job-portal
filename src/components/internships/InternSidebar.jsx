@@ -2,7 +2,9 @@ import React from 'react';
 import { FaFilter } from 'react-icons/fa6';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
-const InternSidebar = ({ setSearch }) => {
+const InternSidebar = ({ setSearch, location }) => {
+
+
   return (
 
     <div className='main bg-white rounded lg:w-[300px] h-full border px-5 py-5  lg:mt-[50px]'>
@@ -42,8 +44,8 @@ const InternSidebar = ({ setSearch }) => {
               <input
                 type="checkbox"
                 className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
-              //   checked={isChecked}
-              //   onChange={handleCheckboxChange}
+                //   checked={isChecked}
+                onChange={(e) => setLocationType(e.target.checked)}
               />
               <span className="text-sm font-medium text-gray-700">Work from home</span>
             </label>

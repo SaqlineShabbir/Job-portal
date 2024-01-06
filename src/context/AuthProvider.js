@@ -9,23 +9,26 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
 
 
-    const getCookies = () => {
-        const accessToken = Cookies.get('accessToken');
-        useEffect(() => {
-            if (accessToken) {
-                const jwttoken = jwt.decode(accessToken);
-                setUser(jwttoken);
-                console.log('Decoded JWT Token:', jwttoken);
-                console.log('Original Access Token:', accessToken);
-            }
-        }, [accessToken, setUser]);
+    //get user from cookies and  decode  it
+    // const getCookies = () => {
+    const accessToken = Cookies.get('accessToken');
+    useEffect(() => {
+        if (accessToken) {
+            const jwttoken = jwt.decode(accessToken);
+            setUser(jwttoken);
+            // console.log('Decoded JWT Token:', jwttoken);
+            // console.log('Original Access Token:', accessToken);
+        }
+    }, [accessToken, setUser]);
 
-    }
+    // }
 
 
 
-    getCookies()
-    console.log(user)
+    // getCookies()
+
+
+    //logout
     const LogoutUser = async () => {
         const response = await AxiosInstance.post('/auth/logout')
         Cookies.remove('accessToken');
@@ -38,7 +41,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         LogoutUser,
-        getCookies
+
 
     }
     return (
