@@ -2,7 +2,7 @@ import React from 'react';
 import { FaFilter } from 'react-icons/fa6';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
-const InternSidebar = ({ setSearch, location }) => {
+const InternSidebar = ({ setSearch, setLocationType }) => {
 
 
   return (

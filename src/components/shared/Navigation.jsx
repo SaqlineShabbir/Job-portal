@@ -13,8 +13,8 @@ export default function Navigation() {
   const [navbar, setNavbar] = useState(false);
 
   const { LogoutUser, user } = useContext(AuthContext)
-  console.log(user)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // console.log(user)
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -75,9 +75,9 @@ export default function Navigation() {
             </div>
           </div>
         </div>
-
-
         <div>
+
+
           {/* nav links */}
           <div
             className={`flex-1  pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? 'block' : 'hidden'
@@ -91,7 +91,7 @@ export default function Navigation() {
               </li>
 
               <li className=" hover:text-black-600 cursor-pointer">
-                <Link href="/about-us">
+                <Link href="/course">
                   <span>Courses</span>
                 </Link>
               </li>
@@ -117,13 +117,21 @@ export default function Navigation() {
                 </li>
               )}
 
+
               {/* -------------------------------- */}
 
               <div className="group relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded-md p-4">
                 {user && (
                   <div className="flex items-center space-x-4">
                     <div>
-                      <FaRegUserCircle />
+                      {/* <FaRegUserCircle /> */}
+                      <Image
+                        className='rounded-lg'
+                        src={user?.photo}
+                        width={30}
+                        height={30}
+                        alt="Picture of the author"
+                      />
                     </div>
                     <div>
                       <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600">

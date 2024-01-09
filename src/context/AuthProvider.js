@@ -8,7 +8,8 @@ import jwt from 'jsonwebtoken'
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
 
     //get user from cookies and  decode  it
@@ -18,12 +19,17 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (accessToken) {
             const jwttoken = jwt.decode(accessToken);
-            setUser(jwttoken);
+
             AxiosInstance.get(`/users/${jwttoken.useridneed}`)
-                .then(res => res.json())
-                .then(data => console.log(data))
-            // console.log('Decoded JWT Token:', jwttoken);
-            // console.log('Original Access Token:', accessToken);
+                .then(response => {
+                    // Handle the successful response here
+                    setUser(response.data.data[0]);
+                })
+                .catch(error => {
+                    // Handle the error
+                    console.error('Error fetching user data:', error);
+                });
+
         }
     }, [accessToken, setUser]);
 
@@ -42,6 +48,8 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        loading,
+        setLoading,
         LogoutUser,
     };
 
