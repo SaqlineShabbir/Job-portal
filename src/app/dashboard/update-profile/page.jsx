@@ -3,30 +3,30 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import { AuthContext } from '@/context/AuthProvider';
+import Image from 'next/image';
 
 const UpdateUserForm = () => {
     const { user } = useContext(AuthContext)
     const [userData, setUserData] = useState('')
-    console.log(userData)
+    console.log('uuu', user)
     //hh
     const [firstname, setFirstName] = useState(userData?.firstname)
     const [lastname, setLastName] = useState(userData?.lastname)
     const [phone, setPhone] = useState(userData?.phone)
     const [image, setImage] = useState(userData?.photo)
-    console.log('user from p', user)
-
-
+    // console.log('user from p', user)
     useEffect(() => {
         // Fetch user details for updating
-        AxiosInstance.get(`/users/${user?.useridneed}`)
+        AxiosInstance.get(`/users/${user?._id}`)
             .then((response) => {
                 // console.log('res', response.data.data[0])
+                console.log('ll', response)
                 setUserData(response.data.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching user details:', error);
             });
-    }, [user?.useridneed]);
+    }, [user]);
 
     const formData = new FormData()
 
@@ -46,7 +46,7 @@ const UpdateUserForm = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             };
-            AxiosInstance.put(`/users/update?id=${user?.useridneed}`, formData, config)
+            AxiosInstance.put(`/users/update?id=${user?._id}`, formData, config)
                 .then((response) => {
                     console.log('User updated successfully:', response.data);
                     // Handle success, e.g., redirect to user profile
@@ -57,7 +57,7 @@ const UpdateUserForm = () => {
                 });
         } else {
 
-            AxiosInstance.put(`/users/updateWithoutProfileImg?id=${user?.useridneed}`, {
+            AxiosInstance.put(`/users/updateWithoutProfileImg?id=${user?._id}`, {
                 firstname,
                 lastname,
                 phone
@@ -80,6 +80,12 @@ const UpdateUserForm = () => {
     return (
         <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
             {/* Add your form fields based on the user schema */}
+            {/* <Image
+                src={user?.photo}
+                width={500}
+                height={500}
+                alt="Picture of the author"
+            /> */}
             <div className=''>
                 <label className="block mb-2">First Name:
                     <input

@@ -14,7 +14,7 @@ export default function Navigation() {
 
   const { LogoutUser, user } = useContext(AuthContext)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(user)
+  // console.log(user)
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -123,7 +123,14 @@ export default function Navigation() {
                 {user && (
                   <div className="flex items-center space-x-4">
                     <div>
-                      <FaRegUserCircle />
+                      {/* <FaRegUserCircle /> */}
+                      <Image
+                        className='rounded-lg'
+                        src={user?.photo}
+                        width={30}
+                        height={30}
+                        alt="Picture of the author"
+                      />
                     </div>
                     <div>
                       <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600">

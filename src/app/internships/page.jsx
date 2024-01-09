@@ -3,30 +3,46 @@ import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import InternCard from '@/components/internships/InternCard';
 import InternOfferCard from '@/components/internships/InternOfferCard';
 import InternSidebar from '@/components/internships/InternSidebar';
+import { AuthContext } from '@/context/AuthProvider';
+import CardLoader from '@/ui/loaders/CardLoader';
+import JobPagination from '@/ui/paginations/JobPagination';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
 const page = () => {
-  const [search, setSearch] = useState('')
-  const [location, setLocation] = useState('')
+  const [search, setSearch] = useState(null)
+  const [locationType, setLocationType] = useState(false)
   const [jobs, setJobs] = useState(null)
-  console.log('jobss', jobs)
-  console.log(search)
+  const { loading, setLoading, user } = useContext(AuthContext)
+  //pagination
+  const [currentPage, setCurrentPage] = useState(jobs?.pagination?.currentpage);
+
+  const handlePageChange = (newPage) => {
+    // Add logic to fetch data for the new page or update your UI accordingly
+    setCurrentPage(currentPage);
+  };
+
+  console.log('jobs', jobs?.pagination)
   useEffect(() => {
     const fetchData = async () => {
+      let queryString = ''
       try {
-        let queryString = `?title=${search}`
+
         if (search) {
           queryString = `?title=${search}`
         }
         // Add location filter if location is provided
-        if (location) {
-          queryString += `&locationtype=${location}`;
+        if (locationType) {
+          queryString = `?locationtype=Remote`;
+        }
+        if (locationType && search) {
+          queryString = `?title=${search}&locationtype=Remote`;
         }
         const response = await AxiosInstance.get(`/jobs${queryString}`);
         //&page=1&jobtimetype=full-time&locationtype=Remote
-        setJobs(response.data.data);
+        setJobs(response.data);
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error, you might want to set an error state or display an error message.
@@ -34,25 +50,54 @@ const page = () => {
     };
 
     fetchData();
-  }, [search]);
+  }, [search, locationType]);
+
+
+  //decide what to render
+
+  let content = null
+
+  if (loading) {
+    content = (
+      <>
+        <CardLoader />
+        <CardLoader />
+        <CardLoader />
+
+      </>
+    );
+  }
+  if (!loading && jobs?.length === 0) {
+    content = <p>No jobs found! </p>;
+  }
+
+  if (!loading && jobs?.length > 0) {
+    content = <div> <div className='grid grid-cols-1 gap-5'>
+      {jobs?.data.map((intern) => (
+        <InternCard key={intern?.id} intern={intern}></InternCard>
+      ))}
+    </div>
+      <div className='pt-10'>
+        <JobPagination currentPage={currentPage
+        } totalPages={jobs?.pagination?.totalPage} onPageChange={handlePageChange}></JobPagination>
+
+      </div>
+    </div>
+  }
 
   return (
 
     <div className='py-5 bg-gray-100 px-10 md:px-[200px] '>
       <div><h2>Home - Internships </h2></div>
       <div className='py-20 lg:flex justify-center lg:space-x-10 '>
-        <InternSidebar setSearch={setSearch} setLocation={setLocation}></InternSidebar>
+        <InternSidebar setSearch={setSearch} setLocationType={setLocationType}></InternSidebar>
         <div className='space-y-5 pt-20 md:pt-2'>
           <h2 className='text-center'>6318 Total Internships</h2>
 
           {/* internshipsoffercard */}
           <InternOfferCard></InternOfferCard>
           {/* all the internship card here */}
-          <div className='grid grid-cols-1 gap-5'>
-            {jobs?.map((intern) => (
-              <InternCard key={intern?.id} intern={intern}></InternCard>
-            ))}
-          </div>
+          {content}
         </div>
       </div>
     </div>
