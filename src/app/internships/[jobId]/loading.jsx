@@ -1,8 +1,6 @@
 
 
-import React from 'react';
-
-const CardLoader = () => {
+const loading = () => {
     return (
         <div className="">
             <div class="flex items-center justify-center">
@@ -14,4 +12,4 @@ const CardLoader = () => {
     );
 };
 
-export default CardLoader;
+export default loading;

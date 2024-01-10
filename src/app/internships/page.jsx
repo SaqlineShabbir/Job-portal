@@ -61,8 +61,6 @@ const page = () => {
     content = (
       <>
         <CardLoader />
-        <CardLoader />
-        <CardLoader />
 
       </>
     );

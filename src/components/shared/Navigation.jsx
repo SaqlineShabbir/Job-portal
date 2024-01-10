@@ -104,10 +104,10 @@ export default function Navigation() {
                   </span>
 
                   <div className="absolute hidden shadow-lg bg-white border border-gray-300 w-[200px] px-5 py-5 space-y-3 rounded-md group-hover:block transition-all duration-300 ease-in-out">
-                    <Link href="/signup" className="block text-gray-700 hover:text-purple-600">
+                    <Link href="/student-signup" className="block text-gray-700 hover:text-purple-600">
                       As a Student
                     </Link>
-                    <Link href="/dropdown-link-2" className="block text-gray-700 hover:text-purple-600">
+                    <Link href="/employer-signup" className="block text-gray-700 hover:text-purple-600">
                       As an Employer
                     </Link>
                     <Link href="/login" className="block text-gray-700 hover:text-purple-600">

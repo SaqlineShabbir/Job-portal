@@ -13,13 +13,15 @@ const page = () => {
 
 
     const handleSubmit = async (e) => {
+
         e.preventDefault()
         try {
             const result = await AxiosInstance.post('/auth/sign-up', {
                 firstname,
                 lastname,
                 email,
-                password
+                password,
+                role: 'Employer'
             }, {
                 withCredentials: true
             })
@@ -41,7 +43,7 @@ const page = () => {
         <div className="py-10 flex items-center justify-center bg-gray-100 lg:min-h-[100vh]">
             <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
                 <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 underline decoration-teal-500 decoration-wavy">
-                    Sign-Up
+                    Employer Sign-Up
                 </h1><br />
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-2 gap-4 mb-4">
