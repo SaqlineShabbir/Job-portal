@@ -75,9 +75,9 @@ export default function Navigation() {
             </div>
           </div>
         </div>
-
-
         <div>
+
+
           {/* nav links */}
           <div
             className={`flex-1  pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? 'block' : 'hidden'
@@ -91,7 +91,7 @@ export default function Navigation() {
               </li>
 
               <li className=" hover:text-black-600 cursor-pointer">
-                <Link href="/about-us">
+                <Link href="/course">
                   <span>Courses</span>
                 </Link>
               </li>
@@ -116,6 +116,7 @@ export default function Navigation() {
                   </div>
                 </li>
               )}
+
 
               {/* -------------------------------- */}
 

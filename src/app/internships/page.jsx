@@ -72,7 +72,7 @@ const page = () => {
   if (!loading && jobs?.length > 0) {
     content = <div> <div className='grid grid-cols-1 gap-5'>
       {jobs?.data.map((intern) => (
-        <InternCard key={intern?.id} intern={intern}></InternCard>
+        <InternCard key={intern?._id} intern={intern}></InternCard>
       ))}
     </div>
       <div className='pt-10'>

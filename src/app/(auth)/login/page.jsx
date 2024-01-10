@@ -1,4 +1,5 @@
 'use client'
+
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Cookies from 'js-cookie';
 
@@ -25,9 +26,12 @@ const page = () => {
             })
 
             if (res.data.status === 'success') {
-                router.push('/');
-            }
-            console.log(res)
+                // Retrieve the saved path from session storage
+                const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
+
+                // Redirect the user to the saved or default path
+                router.push("/dashboard");
+            };
 
         } catch (err) {
             console.log(err)

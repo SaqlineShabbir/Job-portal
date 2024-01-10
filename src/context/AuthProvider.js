@@ -1,8 +1,11 @@
 "use client"
+
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Cookies from 'js-cookie';
 import React, { createContext, useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken'
+
+
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
@@ -12,6 +15,7 @@ const AuthProvider = ({ children }) => {
     //get user from cookies and  decode  it
     // const getCookies = () => {
     const accessToken = Cookies.get('accessToken');
+
     useEffect(() => {
         if (accessToken) {
             const jwttoken = jwt.decode(accessToken);
@@ -40,9 +44,6 @@ const AuthProvider = ({ children }) => {
     const LogoutUser = async () => {
         const response = await AxiosInstance.post('/auth/logout')
         Cookies.remove('accessToken');
-        console.log(response)
-
-
     }
 
     const authInfo = {
@@ -50,9 +51,8 @@ const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         LogoutUser,
+    };
 
-
-    }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

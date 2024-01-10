@@ -1,5 +1,7 @@
 'use client'
+
 import ApplyinternModal from '@/components/modals/ApplyinternModal';
+import PrivateRoute from '@/components/protectedRoutes/PrivateRoute';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -12,7 +14,8 @@ import { SlCalender } from 'react-icons/sl';
 const InternDetails = ({ params }) => {
     const [openmodal, setOpenmodal] = useState(false)
     const [job, setJob] = useState(null)
-    console.log(params)
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -23,18 +26,14 @@ const InternDetails = ({ params }) => {
                 // Handle error, you might want to set an error state or display an error message.
             }
         };
-
         fetchData();
     }, [setJob]);
 
-    console.log('this', job)
 
     return (
         <div className='main border shadow flex justify-center lg:mx-[300px] lg:my-20'>
             <div className=''>
                 {/* //card */}
-
-
                 <div className='bg-white py-10 px-5 space-y-5 lg:w-[800px] '>
                     <button className='flex space-x-1 border px-3 text-sm items-center'>
                         <MdOutlineTurnSlightRight size={16} color='blue' />
