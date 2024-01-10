@@ -1,12 +1,9 @@
 import React from 'react';
 import { FaFilter } from 'react-icons/fa6';
-import MaxWidthWrapper from '../MaxWidthWrapper';
 
 const InternSidebar = ({ setSearch, setLocationType }) => {
 
-
   return (
-
     <div className='main bg-white rounded lg:w-[300px] h-full border px-5 py-5  lg:mt-[50px]'>
       <div>
         <div className='flex text-xl justify-center py-5'>
@@ -61,13 +58,9 @@ const InternSidebar = ({ setSearch, setLocationType }) => {
               <span className="text-sm font-medium text-gray-700">Part time</span>
             </label>
           </div>
-
-
-
         </div>
       </div>
     </div>
-
   );
 };
 

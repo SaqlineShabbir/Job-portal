@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from 'react';
 
+import React, { useState } from 'react';
+import { FaPlus } from "react-icons/fa";
 
 const datas = [
   {
@@ -52,10 +53,11 @@ const FrequentlyAsked = () => {
 
       <div className=" flex flex-col  justify-center items-center py-10">
 
-        <h2 className=" font-bolder text-xl md:text-3xl  lg:text-4xl  lg:leading-9 md:leading-7 leading-9  ">
-          Frequently Asked Questions
+        <h2 className="font-bolder font-semibold text-2xl  md:text-3xl  lg:text-4xl text-slate-500 lg:leading-9 md:leading-7 leading-9 underline decoration-blue-500 decoration-wavy">
+          Frequently Asked Questions.
         </h2>
-        <p className=" font-normal text-base leading-6 text-gray-600  pt-4 ">
+
+        <p className="text-lg font-medium leading-6 text-gray-400 pt-6">
           Here are few of the most frequently asked questions by our valueable
           users
         </p>
@@ -77,11 +79,11 @@ const FrequentlyAsked = () => {
                       onClick={() => setActive('')}
                       className="flex justify-between items-center "
                     >
-                      <h3 className=" w-4/5  leading-5 ">
+                      <h3 className="w-4/5 leading-5">
                         {data.title}
                       </h3>
                       {/* //plus svg */}
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" /> </svg>
+                      <FaPlus />
                     </div>
                   ) : (
                     <div
@@ -92,7 +94,7 @@ const FrequentlyAsked = () => {
                         {data.title}
                       </h3>
 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" /> </svg>
+                      <FaPlus />
                     </div>
                   )}
                 </div>

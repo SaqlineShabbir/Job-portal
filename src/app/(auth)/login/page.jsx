@@ -17,25 +17,20 @@ const page = () => {
     //handlesubmit
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const res = await AxiosInstance.post('/auth/login', {
-                email,
-                password
-            }, {
-                withCredentials: true
-            })
+        const res = await AxiosInstance.post('/auth/login', {
+            email,
+            password
+        }, {
+            withCredentials: true
+        })
 
-            if (res.data.status === 'success') {
-                // Retrieve the saved path from session storage
-                const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
+        if (res.data.status === 'success') {
+            // Retrieve the saved path from session storage
+            const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
 
-                // Redirect the user to the saved or default path
-                router.push("/dashboard");
-            };
-
-        } catch (err) {
-            console.log(err)
-        }
+            // Redirect the user to the saved or default path
+            router.push("/dashboard");
+        };
     }
 
     return (
@@ -71,9 +66,8 @@ const page = () => {
                     <Link href="/login/forgot-password" className='text-lg text-blue-500 flex justify-end items-center cursor-pointer hover:underline'>Forgot Password ?</Link><br />
 
                     <button
-
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 duration-500 text-lg font-semibold"
+                        className="w-full bg-blue-500 text-white py-2 rounded-md text-lg font-semibold active:bg-blue-600"
                     >
                         Log in
                     </button>
