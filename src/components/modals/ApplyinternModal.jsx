@@ -1,14 +1,17 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { IoIosCloseCircle } from 'react-icons/io';
 import Link from 'next/link';
 import { FormEvent } from 'react'
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import PrivateRoute from '../protectedRoutes/PrivateRoute';
+import { AuthContext } from '@/context/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const ApplyinternModal = ({ setOpenmodal, job }) => {
+    const { user } = useContext(AuthContext)
     //handle checkboxs
     const [checkedvalue, setCheckedValue] = useState('')
     const [checkbox1, setCheckbox1] = useState(false);
@@ -24,15 +27,37 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
         setCheckbox2(!checkbox2);
         setCheckbox1(false);
     };
+    //state to get inputs vales
+    const [coverleter, setCoverleter] = useState('')
+    const [resume, setResume] = useState('')
+
+    const formData = new FormData()
+    formData.append('jobId', job?._id)
+    formData.append('userId', user?._id)
+    formData.append('coverleter', coverleter)
+    formData.append('resume', resume)
+    formData.append('available', checkedvalue)
+    formData.append('userEmail', user?.email)
+
 
     //post actual data to  backend
 
-    const handleSubmit = () => {
-        AxiosInstance.post('/applyjob', {
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        try {
+            AxiosInstance.post('/applyjob', formData)
+                .then((res) => {
+                    console.log('res from apply', res);
+                })
+                .catch((err) => {
+                    console.error('Error in applying for the job', err);
+                    toast.error(`Application failed because ${err.response?.data?.message}`);
 
-        }).then((res) => {
-            console.log('res  from apply', res)
-        })
+                });
+        } catch (err) {
+            console.error('Unexpected error:', err);
+            toast.error(`Unexpected error occurred: ${err.message}`);
+        }
     }
 
     return (
@@ -52,7 +77,7 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
 
 
                     <h1 className=" lg:text-3xl text-gray-700 mb-5">
-                        Applying for {job.title}
+                        Applying for {job?.title}
                     </h1>
                     <hr />
 
@@ -63,54 +88,62 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
                             <Link href='/'><p className='text-blue-500'>Edit resume</p></Link>
                         </div>
                     </div>
-                    <div className='space-y-3'>
-                        <p className='text-lg font-bold'>Cover letter</p>
-                        <p>Why should you be hired for this role?</p>
-                        <textarea className='border  w-full h-[200px] px-3 py-3' name="" id=""></textarea>
-                    </div>
-
-                    <div>
-                        <p className='text-lg font-bold'>Confirm your availability</p>
-                        <div className="max-w-md py-2 rounded-md ">
-                            <label className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    value={'yes'}
-                                    className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
-                                    checked={checkbox1}
-                                    onChange={handleCheckbox1Change}
-                                />
-                                <span className="text-sm font-medium text-gray-700">Yes i am available to join immediately</span>
-                            </label>
+                    {/* //helllo */}
+                    <form onSubmit={handleSubmit}>
+                        <div className='space-y-3'>
+                            <p className='text-lg font-bold'>Cover letter</p>
+                            <p>Why should you be hired for this role?</p>
+                            <textarea onChange={(e) => setCoverleter(e.target.value)} className='border  w-full h-[200px] px-3 py-3' name="" id=""></textarea>
                         </div>
-                        <div className="max-w-md py-2 rounded-md ">
-                            <label className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
-                                    checked={checkbox2}
-                                    onChange={handleCheckbox2Change}
-                                />
-                                <span className="text-sm font-medium text-gray-700">No  im not available right now</span>
-                            </label>
+                        <Toaster
+                            position="bottom-center"
+                            reverseOrder={false}
+                        />
+                        <div>
+                            <p className='text-lg font-bold'>Confirm your availability</p>
+                            <div className="max-w-md py-2 rounded-md ">
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+
+                                        value={'yes'}
+                                        className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
+                                        checked={checkbox1}
+                                        onChange={handleCheckbox1Change}
+                                    />
+                                    <span className="text-sm font-medium text-gray-700">Yes i am available to join immediately</span>
+                                </label>
+                            </div>
+                            <div className="max-w-md py-2 rounded-md ">
+                                <label className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
+                                        checked={checkbox2}
+                                        onChange={handleCheckbox2Change}
+                                    />
+                                    <span className="text-sm font-medium text-gray-700">No  im not available right now</span>
+                                </label>
+                            </div>
+
                         </div>
 
-                    </div>
+                        {/* //custom resume */}
+                        <div>
+                            <p className='text-lg font-bold'>Custom resume</p>
 
-                    {/* //custom resume */}
-                    <div>
-                        <p className='text-lg font-bold'>Custom resume</p>
-
-                        <div className='space-y-3 flex flex-col'>
-                            <label for="files">Upload your resume here </label>
-                            <input placeholder='' title='Upload file' type="file" name="resume" id="" />
-                            <span className='text-sm  text-gray-400'>Max file size: 10Mb. File type - PDF, DOC, DOCX</span>
+                            <div className='space-y-3 flex flex-col'>
+                                <label for="files">Upload your resume here </label>
+                                <input onChange={(e) => setResume(e.target.files[0])} required placeholder='' title='Upload file' type="file" name="resume" id="" />
+                                <span className='text-sm  text-gray-400'>Max file size: 10Mb. File type - PDF, DOC, DOCX</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='flex justify-center pt-10'>
-                        <button className='bg-blue-400 px-10 py-1 text-white'>Submit Application</button>
-                    </div>
+                        <div className='flex justify-center pt-10'>
+                            <button type='submit' className='bg-blue-400 px-10 py-1 text-white'>Submit Application</button>
+                        </div>
+
+                    </form>
 
                 </div>
             </div>

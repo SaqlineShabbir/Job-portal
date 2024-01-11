@@ -31,7 +31,7 @@ const page = () => {
                     <thead className="bg-gray-200 text-sm">
                         <tr className=''>
                             <th className="py-2 px-4 border-b">COMPANY</th>
-                            <th className="py-2 px-4 border-b">PROFILE</th>
+                            <th className="py-2 px-4 border-b">Job Title</th>
                             <th className="py-2 px-4 border-b">APPLIED ON</th>
                             <th className="py-2 px-4 border-b">NUMBER OF APPLICANTS</th>
                             <th className="py-2 px-4 border-b">APPLICATION STATUS</th>
@@ -44,8 +44,8 @@ const page = () => {
 
 
                             <tr key={application._id}>
-                                <td className="py-2 px-4 border-b">{application.companyName}</td>
-                                <td className="py-2 px-4 border-b">{application.jobtitle}</td>
+                                <td className="py-2 px-4 border-b">{application.jobId?.companyName}</td>
+                                <td className="py-2 px-4 border-b">{application.jobId?.title.slice(0, 15)}</td>
                                 <td className="py-2 px-4 border-b">2024-01-04</td>
                                 <td className="py-2 px-4 mx-auto border-b">25</td>
                                 <td className="py-2 px-4 border-b">In Progress</td>

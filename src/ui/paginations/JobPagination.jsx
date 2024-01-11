@@ -2,6 +2,7 @@ import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const JobPagination = ({ currentPage, totalPages, onPageChange }) => {
+    console.log('currentpage', currentPage)
     const isPreviousDisabled = currentPage === 1;
     const isNextDisabled = currentPage === totalPages;
 

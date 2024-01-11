@@ -16,30 +16,30 @@ const page = () => {
   const [jobs, setJobs] = useState(null)
   const { loading, setLoading, user } = useContext(AuthContext)
   //pagination
-  const [currentPage, setCurrentPage] = useState(jobs?.pagination?.currentpage);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  console.log('currr', currentPage)
   const handlePageChange = (newPage) => {
     // Add logic to fetch data for the new page or update your UI accordingly
-    setCurrentPage(currentPage);
+    newPage
   };
 
-  console.log('jobs', jobs?.pagination)
+  console.log('jobs', jobs?.pagination.currentpage)
   useEffect(() => {
     const fetchData = async () => {
       let queryString = ''
       try {
 
         if (search) {
-          queryString = `?title=${search}`
+          queryString = `&title=${search}`
         }
         // Add location filter if location is provided
         if (locationType) {
-          queryString = `?locationtype=Remote`;
+          queryString = `&locationtype=Remote`;
         }
         if (locationType && search) {
-          queryString = `?title=${search}&locationtype=Remote`;
+          queryString = `&title=${search}&locationtype=Remote`;
         }
-        const response = await AxiosInstance.get(`/jobs${queryString}`);
+        const response = await AxiosInstance.get(`/jobs?page=${currentPage}${queryString}`);
         //&page=1&jobtimetype=full-time&locationtype=Remote
         setJobs(response.data);
         setLoading(false)

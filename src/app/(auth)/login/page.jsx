@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const page = () => {
     const router = useRouter()
@@ -28,16 +29,15 @@ const page = () => {
             if (res.data.status === 'success') {
                 // Retrieve the saved path from session storage
                 const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
-
+                toast.success("Logged in successfully!")
                 // Redirect the user to the saved or default path
                 router.push("/dashboard");
-            };
+            }
 
         } catch (err) {
-            console.log(err)
+            toast.error(`Authentication failed cause ${err.message}`)
         }
     }
-
     return (
         <div className="py-10  lg:min-h-[100vh] flex items-center justify-center bg-gray-100">
             <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
@@ -71,14 +71,13 @@ const page = () => {
                     <Link href="/login/forgot-password" className='text-lg text-blue-500 flex justify-end items-center cursor-pointer hover:underline'>Forgot Password ?</Link><br />
 
                     <button
-
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 duration-500 text-lg font-semibold"
+                        className="w-full bg-blue-500 text-white py-2 rounded-md text-lg font-semibold active:bg-blue-600"
                     >
                         Log in
                     </button>
                 </form> <br />
-
+                <Toaster />
                 <p>New to here ? <Link href="/signup" className='text-md text-blue-500 font-mono cursor-pointer hover:underline duration-500'>Register</Link></p>
             </div>
         </div>
