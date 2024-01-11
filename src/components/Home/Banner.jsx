@@ -16,7 +16,7 @@ const Banner = () => {
 
                 {/* banner title section */}
                 <div className='space-y-5 lg:py-10'>
-                    <p className='text-5xl font-bold leading-tight'> <span className='text-slate-500'>CareerHub</span>  Discover <br /> Your <span className='text-amber-500 text-6xl'>Next</span> <span className='animate-pulse'>Chapter</span> </p>
+                    <p className='text-5xl font-bold leading-tight'> <span className='text-slate-500'>CareerHub</span>  Discover <br /> Your <span className='text-amber-500 text-6xl '>Next</span> <span className='animate-pulse'>Chapter</span> </p>
 
 
                     <p className='text-lg text-slate-700'>Immerse yourself in a seamless experience designed to redefine your job search. <br /> Uncover a multitude of job listings, each representing a chance for growth and success. Whether you're a seasoned professional or a passionate newcomer, we have the opportunities that align with your ambitions.</p>
@@ -26,7 +26,6 @@ const Banner = () => {
                         <BannerBtn1 />
                         <BannerBtn2 />
                     </div>
-
                 </div>
 
 
@@ -42,7 +41,8 @@ const Banner = () => {
             </div>
 
             {/* 4 title section */}
-            <div className='bg-blue-600 py-10 lg:px-[200px] text-white lg:flex lg:justify-between lg:flex-row flex flex-col items-center justify-center mb-20 space-y-10 lg:space-y-0 mt-6'>
+            <div className='bg-gradient-to-r from-slate-500 to-slate-800 py-10 lg:px-[200px] text-white lg:flex lg:justify-between lg:flex-row flex flex-col items-center justify-center mb-20 space-y-10 lg:space-y-0 mt-6'>
+
                 <div className='flex space-x-2'>
                     <p className='text-5xl font-bold text-white'>12</p>
                     <p><br />Innovation</p>
@@ -63,7 +63,6 @@ const Banner = () => {
                     <p><br />Excellence</p>
                 </div>
             </div>
-
         </div>
     );
 };
