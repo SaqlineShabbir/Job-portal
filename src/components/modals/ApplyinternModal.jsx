@@ -9,6 +9,7 @@ import PrivateRoute from '../protectedRoutes/PrivateRoute';
 
 
 const ApplyinternModal = ({ setOpenmodal, job }) => {
+    //handle checkboxs
     const [checkedvalue, setCheckedValue] = useState('')
     const [checkbox1, setCheckbox1] = useState(false);
     const [checkbox2, setCheckbox2] = useState(false);
@@ -17,13 +18,22 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
         setCheckbox1(!checkbox1);
         setCheckbox2(false);
     };
-
     const handleCheckbox2Change = (e) => {
 
         setCheckedValue('No im not available right now')
         setCheckbox2(!checkbox2);
         setCheckbox1(false);
     };
+
+    //post actual data to  backend
+
+    const handleSubmit = () => {
+        AxiosInstance.post('/applyjob', {
+
+        }).then((res) => {
+            console.log('res  from apply', res)
+        })
+    }
 
     return (
         <PrivateRoute>

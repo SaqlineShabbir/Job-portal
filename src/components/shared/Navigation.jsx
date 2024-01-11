@@ -11,10 +11,9 @@ import { FaRegUserCircle } from "react-icons/fa";
 export default function Navigation() {
 
   const [navbar, setNavbar] = useState(false);
-
   const { LogoutUser, user } = useContext(AuthContext)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // console.log(user)
+  console.log(user)
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
