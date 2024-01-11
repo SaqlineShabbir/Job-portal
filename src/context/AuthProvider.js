@@ -7,32 +7,46 @@ import jwt from 'jsonwebtoken'
 
 
 export const AuthContext = createContext(null)
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [accessToken, setAccessToken] = useState('')
 
 
     //get user from cookies and  decode  it
     // const getCookies = () => {
-    const accessToken = Cookies.get('accessToken');
 
+
+    const token = Cookies.get('accessToken');
     useEffect(() => {
-        if (accessToken) {
-            const jwttoken = jwt.decode(accessToken);
 
-            AxiosInstance.get(`/users/${jwttoken.useridneed}`)
-                .then(response => {
-                    // Handle the successful response here
+        setAccessToken(token)
+
+    }, [token])
+
+    console.log('outside', accessToken)
+    useEffect(() => {
+
+
+        // console.log('inside', accessToken);
+        const fetchUser = async () => {
+            console.log('fetchUser called');
+            if (accessToken) {
+                const jwttoken = jwt.decode(accessToken);
+
+                try {
+                    const response = await AxiosInstance.get(`/users/${jwttoken.useridneed}`);
+                    console.log('User data response:', response.data);
                     setUser(response.data.data[0]);
-                })
-                .catch(error => {
-                    // Handle the error
+                } catch (error) {
                     console.error('Error fetching user data:', error);
-                });
-
+                }
+            }
         }
-    }, [accessToken, setUser]);
 
+        fetchUser();
+    }, [accessToken]);
     // }
 
 

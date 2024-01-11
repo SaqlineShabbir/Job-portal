@@ -1,20 +1,21 @@
 'use client'
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import career from '../../assets/logos/career-removebg-preview.PNG'
+import Profile from "../../assets/images/defaultUser.png";
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
-import { FaRegUserCircle } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import RegLog from '../buttons/RegLog';
+import NavBtn from '../buttons/NavBtn';
 
 
 export default function Navigation() {
 
   const [navbar, setNavbar] = useState(false);
-  const { LogoutUser, user } = useContext(AuthContext)
+  const { LogoutUser, user } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -64,18 +65,26 @@ export default function Navigation() {
             className={`flex-1  pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? 'block' : 'hidden'
               }`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 ">
-              <li className=" hover:text-black-600 focus:border-gray-100 cursor-pointer">
-                <Link href="/internships">
-                  <span>Internships</span>
-                </Link>
-              </li>
+            <ul className="items-center justify-center space-y-8 md:flex md:space-x-4 md:space-y-0">
 
-              <li className=" hover:text-black-600 cursor-pointer">
-                <Link href="/course">
-                  <span>Courses</span>
-                </Link>
-              </li>
+              <div className='flex space-x-2'>
+                <li>
+                  <NavBtn category="internships" name="Internship" />
+                </li>
+
+                <li>
+                  <NavBtn category="jobs" name="Jobs" />
+                </li>
+
+                <li>
+                  <NavBtn category="course" name="Courses" />
+                </li>
+
+              </div>
+
+              {/* verticall */}
+              <div className='text-slate-400 text-3xl hidden md:block'>|</div>
+
 
               {/* // register aqnd login section */}
               {!user?.email && (
@@ -85,11 +94,11 @@ export default function Navigation() {
                   <div className="absolute top-8 duration-500 hidden shadow-lg bg-white border border-gray-300 w-[200px] px-5 py-5 space-y-3 rounded-md group-hover:block text-lg font-medium cursor-pointer">
 
                     <Link href="/student-signup" className="block text-gray-700 hover:text-purple-600">
-                      As a Student
+                      For Student
                     </Link>
 
                     <Link href="/employer-signup" className="block text-gray-700 hover:text-purple-600">
-                      As an Employer
+                      For Employer
                     </Link>
 
                     <Link href="/login" className="block text-gray-700 hover:text-purple-600">
@@ -98,34 +107,30 @@ export default function Navigation() {
 
                   </div>
                 </li>
-              )}
+              )};
 
 
-              {/* after user login access section */}
-              {user?.email && (
-                <div className="group relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded-md p-4">
-
-                  <div className="flex items-center space-x-4">
+              {/* after user login access section PROFILE */}
+              {user && (
+                <div className="relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded p-1">
+                  <div className="flex items-center space-x-1">
                     <div>
-                      {!user?.photo && <FaRegUserCircle />}
                       <Image
-                        className='rounded-lg'
-                        src={user?.photo}
+                        src={user.photo}
+                        alt='default user'
                         width={30}
                         height={30}
-                        alt="Picture of the author"
                       />
                     </div>
-                    <div>
-                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600">
-                        {user?.email}
-                      </p>
 
+                    <div className="group">
+                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 cursor-pointer" onClick={toggleDropdown}>
+                        {user?.firstname}
+                      </p>
                     </div>
                   </div>
 
-
-                  <ul className="absolute hidden shadow-md bg-white px-4 py-2 rounded-md group-hover:block space-y-2">
+                  <ul className={`absolute ${isDropdownOpen ? 'block' : 'hidden'} shadow-md bg-white px-4 py-2 rounded-md space-y-2`}>
                     <li className="hover:text-purple-600">
                       <Link href="/dashboard" className="block px-2 py-1">
                         Profile
@@ -143,10 +148,7 @@ export default function Navigation() {
                     </li>
 
                     <div className="group relative w-36">
-                      <p
-                        className="cursor-pointer hover:text-purple-600 px-2 py-1"
-                        onClick={toggleDropdown}
-                      >
+                      <p className="cursor-pointer hover:text-purple-600 px-2 py-1" onClick={toggleDropdown}>
                         Manage Account
                       </p>
                       {isDropdownOpen && (
@@ -165,7 +167,6 @@ export default function Navigation() {
                     </div>
                   </ul>
                 </div>
-
               )}
             </ul>
           </div>

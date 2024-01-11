@@ -20,7 +20,7 @@ const page = () => {
   console.log('currr', currentPage)
   const handlePageChange = (newPage) => {
     // Add logic to fetch data for the new page or update your UI accordingly
-    newPage
+
   };
 
   console.log('jobs', jobs?.pagination.currentpage)
