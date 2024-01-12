@@ -11,29 +11,35 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [accessToken, setAccessToken] = useState('')
+    const [accessToken, setAccessToken] = useState(Cookies.get('accessToken'));
 
-
-    //get user from cookies and  decode  it
-    // const getCookies = () => {
-
-
-    const token = Cookies.get('accessToken');
     useEffect(() => {
+        const handleCookieChange = (newAccessToken) => {
+            setAccessToken(newAccessToken);
+        };
 
-        setAccessToken(token)
+        // Subscribe to changes in the 'accessToken' cookie
+        const cookieChangeListener = (event) => {
+            if (event.cookieName === 'accessToken') {
+                handleCookieChange(event.newValue);
+            }
+        };
 
-    }, [token])
+        // Add the event listener
+        window.addEventListener('storage', cookieChangeListener);
 
-    console.log('outside', accessToken)
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('storage', cookieChangeListener);
+        };
+    }, []);
+
     useEffect(() => {
-
-
-        // console.log('inside', accessToken);
         const fetchUser = async () => {
             console.log('fetchUser called');
             if (accessToken) {
                 const jwttoken = jwt.decode(accessToken);
+                console.log('inside jwt', jwttoken);
 
                 try {
                     const response = await AxiosInstance.get(`/users/${jwttoken.useridneed}`);
@@ -43,15 +49,10 @@ const AuthProvider = ({ children }) => {
                     console.error('Error fetching user data:', error);
                 }
             }
-        }
+        };
 
         fetchUser();
     }, [accessToken]);
-    // }
-
-
-
-    // getCookies()
 
 
     //logout

@@ -1,22 +1,11 @@
 import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-const JobPagination = ({ currentPage, totalPages, onPageChange }) => {
+const JobPagination = ({ currentPage, totalPages, handleNextClick, handlePreviousClick, isPreviousDisabled, isNextDisabled }) => {
     console.log('currentpage', currentPage)
-    const isPreviousDisabled = currentPage === 1;
-    const isNextDisabled = currentPage === totalPages;
 
-    const handlePreviousClick = () => {
-        if (!isPreviousDisabled) {
-            onPageChange(currentPage - 1);
-        }
-    };
 
-    const handleNextClick = () => {
-        if (!isNextDisabled) {
-            onPageChange(currentPage + 1);
-        }
-    };
+
 
     return (
         <div className="flex items-center justify-center space-x-4">

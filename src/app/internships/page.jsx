@@ -24,6 +24,23 @@ const page = () => {
   };
 
   console.log('jobs', jobs?.pagination.currentpage)
+  // incriment   and decrement buttons
+
+  const isPreviousDisabled = currentPage === 1;
+  const isNextDisabled = currentPage === jobs?.pagination?.totalPage;
+  const handlePreviousClick = () => {
+    if (!isPreviousDisabled) {
+      setCurrentPage(currentPage - 1)
+    }
+  };
+
+  const handleNextClick = () => {
+    if (!isNextDisabled) {
+      setCurrentPage(currentPage + 1)
+    }
+  };
+
+
   useEffect(() => {
     const fetchData = async () => {
       let queryString = ''
@@ -77,7 +94,7 @@ const page = () => {
     </div>
       <div className='pt-10'>
         <JobPagination currentPage={currentPage
-        } totalPages={jobs?.pagination?.totalPage} onPageChange={handlePageChange}></JobPagination>
+        } totalPages={jobs?.pagination?.totalPage} handlePreviousClick={handlePreviousClick} handleNextClick={handleNextClick} isPreviousDisabled={isPreviousDisabled} isNextDisabled={isNextDisabled}></JobPagination>
 
       </div>
     </div>
