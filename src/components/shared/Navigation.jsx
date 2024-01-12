@@ -12,6 +12,7 @@ import RegLog from '../buttons/RegLog';
 import NavBtn from '../buttons/NavBtn';
 
 
+
 export default function Navigation() {
 
   const [navbar, setNavbar] = useState(false);

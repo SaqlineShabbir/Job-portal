@@ -11,61 +11,43 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [accessToken, setAccessToken] = useState(Cookies.get('accessToken'));
 
-    useEffect(() => {
-        const handleCookieChange = (newAccessToken) => {
-            setAccessToken(newAccessToken);
-        };
 
-        // Subscribe to changes in the 'accessToken' cookie
-        const cookieChangeListener = (event) => {
-            if (event.cookieName === 'accessToken') {
-                handleCookieChange(event.newValue);
+    //   get the user from cookies and set to  user state
+    const fetchUser = async () => {
+        const token = Cookies.get('accessToken')
+        if (token) {
+            const jwttoken = jwt.decode(token);
+            try {
+                const response = await AxiosInstance.get(`/users/${jwttoken.useridneed}`);
+                console.log('User data response:', response.data);
+                setUser(response.data.data[0]);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
             }
-        };
+        }
+    };
 
-        // Add the event listener
-        window.addEventListener('storage', cookieChangeListener);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('storage', cookieChangeListener);
-        };
-    }, []);
-
+    // get the user after reloade
     useEffect(() => {
-        const fetchUser = async () => {
-            console.log('fetchUser called');
-            if (accessToken) {
-                const jwttoken = jwt.decode(accessToken);
-                console.log('inside jwt', jwttoken);
-
-                try {
-                    const response = await AxiosInstance.get(`/users/${jwttoken.useridneed}`);
-                    console.log('User data response:', response.data);
-                    setUser(response.data.data[0]);
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-            }
-        };
-
-        fetchUser();
-    }, [accessToken]);
+        fetchUser()
+    }, [])
 
 
     //logout
     const LogoutUser = async () => {
         const response = await AxiosInstance.post('/auth/logout')
         Cookies.remove('accessToken');
+        setUser(null)
     }
 
     const authInfo = {
         user,
+        setUser,
         loading,
         setLoading,
         LogoutUser,
+        fetchUser
     };
 
     return (

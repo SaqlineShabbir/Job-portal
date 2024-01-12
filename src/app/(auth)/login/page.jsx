@@ -1,22 +1,24 @@
 'use client'
 
+import { AuthContext } from '@/context/AuthProvider';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Cookies from 'js-cookie';
 
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const page = () => {
     const router = useRouter()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const { LogoutUser, user, fetchUser } = useContext(AuthContext);
 
     //handlesubmit
     const handleSubmit = async (e) => {
+
         e.preventDefault()
         try {
             const res = await AxiosInstance.post('/auth/login', {
@@ -26,12 +28,18 @@ const page = () => {
                 withCredentials: true
             })
 
+            console.log('resfrom login', res)
+
             if (res.data.status === 'success') {
+
+
+
                 // Retrieve the saved path from session storage
                 const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
                 toast.success("Logged in successfully!")
                 // Redirect the user to the saved or default path
                 router.push("/dashboard");
+                fetchUser()
             }
 
         } catch (err) {

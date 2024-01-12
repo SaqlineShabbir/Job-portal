@@ -22,10 +22,6 @@ const page = () => {
     // Add logic to fetch data for the new page or update your UI accordingly
 
   };
-
-  console.log('jobs', jobs?.pagination.currentpage)
-  // incriment   and decrement buttons
-
   const isPreviousDisabled = currentPage === 1;
   const isNextDisabled = currentPage === jobs?.pagination?.totalPage;
   const handlePreviousClick = () => {
@@ -67,7 +63,7 @@ const page = () => {
     };
 
     fetchData();
-  }, [search, locationType]);
+  }, [search, locationType, currentPage]);
 
 
   //decide what to render
