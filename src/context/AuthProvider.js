@@ -6,7 +6,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken'
 
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
