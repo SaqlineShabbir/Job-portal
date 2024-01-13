@@ -108,7 +108,7 @@ export default function Navigation() {
 
                   </div>
                 </li>
-              )};
+              )}
 
 
               {/* after user login access section PROFILE */}

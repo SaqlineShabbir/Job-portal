@@ -1,15 +1,21 @@
+"use client"
 
-
-import React from 'react';
+import { RotatingLines } from 'react-loader-spinner'
 
 const CardLoader = () => {
     return (
-        <div className="">
-            <div class="flex items-center justify-center">
-                <div class="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-                <p>Loading please  wait</p>
-            </div>
-
+        <div className='flex justify-center items-center my-auto mx-auto '>
+            <RotatingLines
+                visible={true}
+                height="96"
+                width="96"
+                color="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                ariaLabel="rotating-lines-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+            />
         </div>
     );
 };

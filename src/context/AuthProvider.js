@@ -4,6 +4,7 @@ import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Cookies from 'js-cookie';
 import React, { createContext, useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken'
+import getUser from '@/components/apiCalls/getUser';
 
 
 export const AuthContext = createContext(null)
@@ -18,9 +19,10 @@ const AuthProvider = ({ children }) => {
         const token = Cookies.get('accessToken')
         if (token) {
             const jwttoken = jwt.decode(token);
+
             try {
                 const response = await AxiosInstance.get(`/users/${jwttoken.useridneed}`);
-                console.log('User data response:', response.data);
+
                 setUser(response.data.data[0]);
             } catch (error) {
                 console.error('Error fetching user data:', error);

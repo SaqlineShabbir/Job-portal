@@ -1,9 +1,17 @@
-import React from 'react';
+import getJobs from '@/components/apiCalls/getJob';
 
-const page = () => {
+const page = async () => {
+
+
+    const response = await getJobs('658e4d937c63ef3b2b2f679b')
+    // console.log('here', response)
     return (
         <div>
-            <p>this is test page</p>
+
+            <p onClick={console.log('hello')}>{response?.data.title}</p>
+
+
+
         </div>
     );
 };
