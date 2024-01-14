@@ -1,15 +1,20 @@
 import React from 'react';
 import { LatestInternships } from '@/utils/LatestInternships';
 import Link from 'next/link';
-import InternCompany from "@/utils/InternCompany";
+
 import { LuActivity } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMdWallet } from "react-icons/io";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
+import getJobs from '@/utils/apiCalls/getJobs';
 
 
-const LatestJobs = () => {
+const LatestJobs = async () => {
+
+    const jobs = await getJobs()
+
+
     return (
         <main className='md:my-20'>
             <h1 className='text-center text-4xl font-bold'>Latest Jobs</h1><br /><br />
@@ -37,35 +42,35 @@ const LatestJobs = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4 py-6'>
                 {
-                    InternCompany.map((company) =>
+                    jobs.data.slice(-8).map((job) =>
                         <div className='border rounded-xl p-4 space-y-2'>
                             <div className='flex justify-center items-center border py-1 rounded-lg text-sm space-x-2 cursor-pointer'>
                                 <LuActivity />
-                                <span>{company.status}</span>
+                                <span>{job?.status}</span>
                             </div>
 
                             <div>
-                                <h2 className='font-semibold'>{company.position}</h2>
+                                <h2 className='font-semibold'>{job?.title}</h2>
 
-                                <p className='text-md text-slate-600'>{company.positionDes}</p>
+                                <p className='text-md text-slate-600'>{job?.positionDes}</p>
                             </div>
 
                             <br /><hr /><br />
 
                             <div className='flex space-x-1 items-center text-slate-500'>
                                 <FaLocationDot />
-                                <p>{company.location}</p>
+                                <p>{job?.locationtype}</p>
                             </div>
 
                             <div className='flex space-x-1 items-center text-slate-500'>
                                 <IoMdWallet />
-                                <p>{company.sallery}</p>
+                                <p>{job?.salary}</p>
                             </div>
 
-                            <div className='flex space-x-1 items-center text-ms text-blue-500 cursor-pointer'>
+                            <Link href={`/jobs/${job?._id}`}><div className='flex space-x-1 items-center text-ms text-blue-500 cursor-pointer pt-2'>
                                 <span>View details</span>
                                 <IoIosArrowForward />
-                            </div>
+                            </div></Link>
                         </div>
                     )
                 }

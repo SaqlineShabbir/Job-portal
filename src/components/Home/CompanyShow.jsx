@@ -19,7 +19,7 @@ const CompanyShow = () => {
             </div><br />
 
             <div className='flex justify-center items-center space-x-2 md:space-x-10 my-10'>
-                {
+                {/* {
                     images.map((image) => (
                         <Image
                             key={image.indexOf}
@@ -30,7 +30,7 @@ const CompanyShow = () => {
                             className='grayscale hover:grayscale-0 hover:scale-125 duration-500 cursor-pointer md:h-20 md:w-20 h-10 w-10'
                         />
                     ))
-                }
+                } */}
             </div>
 
             <hr />

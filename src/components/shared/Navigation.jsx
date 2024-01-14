@@ -10,7 +10,7 @@ import { FiMenu } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import RegLog from '../buttons/RegLog';
 import NavBtn from '../buttons/NavBtn';
-
+import { FaUserCircle } from 'react-icons/fa';
 
 
 export default function Navigation() {
@@ -70,10 +70,6 @@ export default function Navigation() {
 
               <div className='flex space-x-2'>
                 <li>
-                  <NavBtn category="internships" name="Internship" />
-                </li>
-
-                <li>
                   <NavBtn category="jobs" name="Jobs" />
                 </li>
 
@@ -113,19 +109,19 @@ export default function Navigation() {
 
               {/* after user login access section PROFILE */}
               {user && (
-                <div className="relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded p-1">
-                  <div className="flex items-center space-x-1">
-                    <div>
-                      <Image
+                <div className="relative h-full  transition duration-300  p-1">
+                  <div onClick={toggleDropdown} className="flex items-center  cursor-pointer space-x-1">
+                    <div >
+                      {user.photo ? <Image className='rounded-full h-10 w-10 border-pink-300 border-2'
                         src={user.photo}
                         alt='default user'
-                        width={30}
-                        height={30}
-                      />
+                        width={40}
+                        height={40}
+                      /> : <FaUserCircle />}
                     </div>
 
                     <div className="group">
-                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 cursor-pointer" onClick={toggleDropdown}>
+                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 cursor-pointer" >
                         {user?.firstname}
                       </p>
                     </div>
@@ -137,11 +133,13 @@ export default function Navigation() {
                         Profile
                       </Link>
                     </li>
+
                     <li className="hover:text-purple-600">
                       <Link href="/dashboard/application" className="block px-2 py-1">
                         My Applications
                       </Link>
                     </li>
+
                     <li className="hover:text-purple-600">
                       <Link href="/dashboard/resume" className="block px-2 py-1">
                         Edit Resume
@@ -157,9 +155,11 @@ export default function Navigation() {
                           <li className="hover:text-purple-600 transition duration-300">
                             <Link href="/login/change-email" className="block px-2 py-1">Change Email</Link>
                           </li>
+
                           <li className="hover:text-purple-600 transition duration-300">
                             <Link href="/login/update-password" className="block px-2 py-1">Change Password</Link>
                           </li>
+
                           <li className="hover:text-purple-600 transition duration-300">
                             <Link onClick={LogoutUser} href="/login" className="block px-2 py-1">Logout</Link>
                           </li>

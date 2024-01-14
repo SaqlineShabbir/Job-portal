@@ -1,15 +1,21 @@
-import React from 'react';
+
 import { LatestInternships } from '@/utils/LatestInternships';
 import Link from 'next/link';
-import InternCompany from "@/utils/InternCompany";
+
 import { LuActivity } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMdWallet } from "react-icons/io";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
+import getJobs from '@/utils/apiCalls/getJobs';
 
 
-const LatestIntern = () => {
+const LatestIntern = async () => {
+    const result = await getJobs()
+
+
+    const internships = result?.data?.filter((internship) => internship?.jobtype === 'Internship')
+
     return (
         <main>
             <h1 className='text-center text-4xl font-bold'>Latest Internship</h1><br /><br />
@@ -37,40 +43,40 @@ const LatestIntern = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4 py-6'>
                 {
-                    InternCompany.map((company) =>
-                        <div className='border rounded-xl p-4 space-y-2'>
+                    internships.slice(-8).map((internship) =>
+                        <div key={internship?._id} className='border rounded-xl p-4 space-y-2'>
                             <div className='flex justify-center items-center border py-1 rounded-lg text-sm space-x-2 cursor-pointer'>
                                 <LuActivity />
-                                <span>{company.status}</span>
+                                <span>{internship?.status}</span>
                             </div>
 
                             <div>
-                                <h2 className='font-semibold'>{company.position}</h2>
+                                <h2 className='font-semibold'>{internship?.title}</h2>
 
-                                <p className='text-md text-slate-600'>{company.positionDes}</p>
+                                <p className='text-md text-slate-600'>{internship?.positionDes}</p>
                             </div>
 
                             <br /><hr /><br />
 
                             <div className='flex space-x-1 items-center text-slate-500'>
                                 <FaLocationDot />
-                                <p>{company.location}</p>
+                                <p>{internship?.locationtype}</p>
                             </div>
 
                             <div className='flex space-x-1 items-center text-slate-500'>
                                 <IoMdWallet />
-                                <p>{company.sallery}</p>
+                                <p>{internship?.salary}</p>
                             </div>
 
-                            <div className='flex space-x-1 items-center text-slate-500'>
+                            {/* <div className='flex space-x-1 items-center text-slate-500'>
                                 <MdOutlineCalendarMonth />
-                                <p>{company.seassion}</p>
-                            </div>
+                                <p>{internship?.createdAt.slice(0, 10)}</p>
+                            </div> */}
 
-                            <div className='flex space-x-1 items-center text-ms text-blue-500 cursor-pointer'>
+                            <Link href={`/jobs/${internship?._id}`}> <div className='flex space-x-1 items-center text-ms text-blue-500 cursor-pointer'>
                                 <span>View details</span>
                                 <IoIosArrowForward />
-                            </div>
+                            </div></Link>
                         </div>
                     )
                 }

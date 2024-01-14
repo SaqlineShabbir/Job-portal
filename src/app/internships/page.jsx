@@ -17,11 +17,8 @@ const page = () => {
   const { loading, setLoading, user } = useContext(AuthContext)
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-  console.log('currr', currentPage)
-  const handlePageChange = (newPage) => {
-    // Add logic to fetch data for the new page or update your UI accordingly
+  console.log('currr', jobs)
 
-  };
   const isPreviousDisabled = currentPage === 1;
   const isNextDisabled = currentPage === jobs?.pagination?.totalPage;
   const handlePreviousClick = () => {
@@ -55,6 +52,7 @@ const page = () => {
         const response = await AxiosInstance.get(`/jobs?page=${currentPage}${queryString}`);
         //&page=1&jobtimetype=full-time&locationtype=Remote
         setJobs(response.data);
+        console.log('resssssss', response)
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -84,7 +82,7 @@ const page = () => {
 
   if (!loading && jobs?.length > 0) {
     content = <div> <div className='grid grid-cols-1 gap-5'>
-      {jobs?.data.map((job) => (
+      {jobs?.data?.map((job) => (
         <InternCard key={job?._id} job={job}></InternCard>
       ))}
     </div>

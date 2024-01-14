@@ -2,9 +2,6 @@
 
 import { AuthContext } from '@/context/AuthProvider';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
-import Cookies from 'js-cookie';
-
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import React, { useContext, useState } from 'react';
@@ -29,8 +26,8 @@ const page = () => {
             })
 
 
-
-            if (res.data.status === 'success') {
+            console.log('res from login', res.statusText)
+            if (res?.statusText === 'OK') {
 
 
                 // Retrieve the saved path from session storage

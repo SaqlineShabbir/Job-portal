@@ -4,10 +4,9 @@ import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Cookies from 'js-cookie';
 import React, { createContext, useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken'
-import getUser from '@/components/apiCalls/getUser';
 
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
