@@ -26,8 +26,8 @@ const page = () => {
             })
 
 
-            console.log('res from login', res.statusText)
-            if (res?.statusText === 'OK') {
+            console.log('res from login', res)
+            if (res?.status === 200) {
 
 
                 // Retrieve the saved path from session storage

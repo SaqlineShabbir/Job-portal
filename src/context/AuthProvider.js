@@ -12,21 +12,24 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-
+    console.log('userrrr', user)
     //   get the user from cookies and set to  user state
     const fetchUser = async () => {
-        const token = Cookies.get('accessToken')
-        if (token) {
-            const jwttoken = jwt.decode(token);
+        console.log('fetch user called');
+        const token = Cookies.get('accessToken');
+        console.log('tok', token);
+        // if (token) {
+        const jwttoken = jwt.decode(token);
+        console.log('jwttt decoded', jwttoken);
+        try {
+            const response = await AxiosInstance.get(`/users/${jwttoken?.useridneed}`);
+            console.log('res from coook', response);
 
-            try {
-                const response = await AxiosInstance.get(`/users/${jwttoken.useridneed}`);
-
-                setUser(response.data.data[0]);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
+            setUser(response?.data?.data[0]);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
         }
+        // }
     };
 
     // get the user after reloade

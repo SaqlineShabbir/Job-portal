@@ -18,7 +18,7 @@ export default function Navigation() {
   const [navbar, setNavbar] = useState(false);
   const { LogoutUser, user } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  console.log('user from  navigation', user)
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
