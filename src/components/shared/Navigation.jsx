@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import career from '@/assets/logos/career-removebg-preview.PNG'
+// import career from '@/assets/logos/career-removebg-preview.PNG'
 
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
@@ -33,12 +33,12 @@ export default function Navigation() {
           <div className="flex items-center justify-between  md:block">
             <div className='cursor-pointer'>
               <Link href='/'>
-                <Image
+                {/* <Image
                   src={career}
                   width={120}
                   height={120}
                   alt="Logo"
-                />
+                /> */}
               </Link>
             </div>
             <div className="md:hidden">

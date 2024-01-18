@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import career from '@/assets/logos/career-removebg-preview.PNG';
+// import career from '@/assets/logos/career-removebg-preview.PNG';
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 
@@ -11,13 +11,13 @@ const Footer = () => {
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-start lg:gap-8">
           <div className="text-teal-600 bg-white rounded-lg">
-            <Image
+            {/* <Image
               className="px-2 py-1 rounded"
               src={career}
               width={250}
               height={190}
               alt="logo picture"
-            />
+            /> */}
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
