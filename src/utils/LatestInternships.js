@@ -1,0 +1,1 @@
+export const LatestInternships = ["Big brands", "Work from home", "Part-time", "MBA", "Engineering", "Media", "Design", "Data science"];

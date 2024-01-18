@@ -1,15 +1,25 @@
-import Footer from "@/components/Home/Fotter";
+
+import Banner from "@/components/Home/Banner";
+import CompanyShow from "@/components/Home/CompanyShow";
+import FrequentlyAsked from "@/components/Home/FrequentlyAsked";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import LatestIntern from "@/components/shared/LatestIntern";
+import LatestJobs from "@/components/shared/LatestJobs";
 
 export default function Home() {
   return (
-    <MaxWidthWrapper className="">
-      <div className="">
-        <h2>Hello World</h2>
+    <>
+      <Banner ></Banner>
+      <MaxWidthWrapper className="">
+        <div className="">
 
-        {/* All the home page section here */}
-        <Footer></Footer>
-      </div>
-    </MaxWidthWrapper>
+          <LatestIntern />
+          <LatestJobs />
+
+          <FrequentlyAsked></FrequentlyAsked>
+          <CompanyShow />
+        </div>
+      </MaxWidthWrapper>
+    </>
   );
 }

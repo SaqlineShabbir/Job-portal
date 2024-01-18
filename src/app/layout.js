@@ -1,5 +1,8 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Navigation from '@/components/shared/Navigation'
+import Footer from '@/components/shared/Footer'
+import AuthProvider from '@/context/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,15 +15,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-       className={`${inter.className} relative h-full font-sans antialiased`}>
-        
-        <main className='relative flex flex-col min-h-screen '>
-          {/* TODO Navbar here */}
-         <div  className='flex-grow flex-1'> {children}</div>
-          {/* TODO Footer here */}
+        className={`${inter.className} relative h-full font-sans antialiased`}>
+
+        <AuthProvider>
+          <main className='relative flex flex-col min-h-screen '>
+            {/* TODO Navbar here */}
+            <Navigation></Navigation>
+            <div className='flex-grow flex-1'> {children}</div>
+            {/* TODO Footer here */}
+            <Footer></Footer>
           </main>
-       
-       </body>
+        </AuthProvider>
+
+      </body>
     </html>
   )
 }
