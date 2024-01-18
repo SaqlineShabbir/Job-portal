@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import career from '../../assets/logos/career-removebg-preview.PNG'
-import Profile from "../../assets/images/defaultUser.png";
+
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
 import { FiMenu } from "react-icons/fi";
