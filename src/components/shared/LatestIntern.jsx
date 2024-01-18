@@ -27,7 +27,7 @@ const LatestIntern = async () => {
 
                 <div className='space-x-2 flex flex-wrap'>
                     {
-                        LatestInternships.map((intern) =>
+                        LatestInternships?.map((intern) =>
 
                             <Link
                                 key={intern.indexOf}
@@ -43,7 +43,7 @@ const LatestIntern = async () => {
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4 py-6'>
                 {
-                    internships.slice(-8).map((internship) =>
+                    internships?.slice(-8).map((internship) =>
                         <div key={internship?._id} className='border rounded-xl p-4 space-y-2'>
                             <div className='flex justify-center items-center border py-1 rounded-lg text-sm space-x-2 cursor-pointer'>
                                 <LuActivity />

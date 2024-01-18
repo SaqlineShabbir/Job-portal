@@ -6,7 +6,7 @@ import { SlCalender } from "react-icons/sl";
 import { CiClock2 } from "react-icons/ci";
 import Link from 'next/link';
 const InternCard = ({ job }) => {
-  console.log(job)
+
 
   return (
     <div className='bg-white py-10 px-5 space-y-5'>
