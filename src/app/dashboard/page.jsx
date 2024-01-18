@@ -14,15 +14,15 @@ const page = () => {
             name: 'HTML'
         },
         {
-            id: '1',
+            id: '2',
             name: 'HTML'
         },
         {
-            id: '1',
+            id: '3',
             name: 'HTML'
         },
         {
-            id: '1',
+            id: '4',
             name: 'HTML'
         },
     ]
@@ -32,15 +32,15 @@ const page = () => {
             name: 'HTML'
         },
         {
-            id: '1',
+            id: '2',
             name: 'HTML'
         },
         {
-            id: '1',
+            id: '3',
             name: 'HTML'
         },
         {
-            id: '1',
+            id: '4',
             name: 'HTML'
         },
     ]
