@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import BannerBtn1 from '../buttons/BannerBtn1';
 import BannerBtn2 from '../buttons/BannerBtn2';
 import BannerAnimate from '../animates/BannerAnimate';

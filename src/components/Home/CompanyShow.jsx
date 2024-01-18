@@ -6,7 +6,7 @@ import openai from "@/assets/company/openai.png";
 import amazon from "@/assets/company/amazon.png";
 import paypal from "@/assets/company/paypal.png";
 import tesla from "@/assets/company/tesla.png";
-import Image from 'next/image';
+
 import Achivements from './Achivements';
 
 const CompanyShow = () => {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import career from '../../assets/logos/career-removebg-preview.PNG';
+import career from '@/assets/logos/career-removebg-preview.PNG';
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 

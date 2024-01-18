@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { IoIosApps, IoIosCheckmarkCircle } from 'react-icons/io';
-import { FaRegEdit, FaUserEdit } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
 import { MdEditSquare, MdLibraryAdd } from 'react-icons/md';
 import Link from 'next/link';
 const Sidebar = () => {
