@@ -71,6 +71,7 @@ const AuthProvider = ({ children }) => {
 
     //logout
     const LogoutUser = async () => {
+        console.log('logging out ')
         const response = await AxiosInstance.post('/auth/logout')
         Cookies.remove('accessToken');
         setUser(null)

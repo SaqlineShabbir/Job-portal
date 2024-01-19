@@ -2,6 +2,7 @@
 
 import { AuthContext } from '@/context/AuthProvider';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import React, { useContext, useState } from 'react';
@@ -18,13 +19,12 @@ const page = () => {
 
         e.preventDefault()
         try {
-            const res = await AxiosInstance.post('/auth/login', {
+            const res = await axios.post('https://job-portall.onrender.com/api/v1/auth/login', {
                 email,
                 password
             }, {
-                withCredentials: true
+                withCredentials: true,
             })
-
 
             console.log('res from login', res)
             if (res?.status === 200) {
