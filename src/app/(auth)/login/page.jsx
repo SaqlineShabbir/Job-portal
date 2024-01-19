@@ -28,10 +28,8 @@ const page = () => {
                 withCredentials: true
             })
 
-            console.log('resfrom login', res)
 
             if (res.data.status === 'success') {
-
 
 
                 // Retrieve the saved path from session storage

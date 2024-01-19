@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <>
       <Banner ></Banner>
-      <MaxWidthWrapper className="">
-        <div className="">
+      <MaxWidthWrapper>
+        <div>
 
           <LatestIntern />
           <LatestJobs />

@@ -8,8 +8,8 @@ const BannerAnimate = () => {
     return (
         <Lottie
             animationData={JobAnimate}
-            height={500}
-            width={500}
+            height={700}
+            width={700}
             loop={true}
         />
     )
