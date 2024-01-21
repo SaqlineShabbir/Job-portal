@@ -16,6 +16,8 @@ const AuthProvider = ({ children }) => {
 
     // //   get the user from cookies and set to  user state
     const fetchUser = async () => {
+
+        console.log('biscuite', document.cookie)
         try {
             console.log('fetch user called');
 
