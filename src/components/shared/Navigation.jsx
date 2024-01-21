@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-// import career from '@/assets/logos/career-removebg-preview.PNG'
+// import career from '../../assets/logos/career-removebg-preview.PNG'
 
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';

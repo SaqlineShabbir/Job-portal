@@ -13,33 +13,20 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     console.log('userrrr', user)
-    // Function to get cookies using a Promise
-    const getCookies = () => {
-        return new Promise((resolve, reject) => {
-            try {
-                // const cookies = new Cookies();
-                const myCookie = Cookies.get('accessToken');
-                resolve(myCookie);
-                console.log('mycookie', myCookie)
-            } catch (error) {
-                reject(error);
-            }
-        });
-    };
-
 
     // //   get the user from cookies and set to  user state
     const fetchUser = async () => {
+
+        console.log('biscuite', document.cookie)
         try {
             console.log('fetch user called');
 
-            const myCookie = await getCookies();
-            console.log('Cookie value:', myCookie);
-            console.log('All Cookies:', document.cookie);
+            const token = Cookies.get('accessToken');
 
+            console.log('token', token)
             // Now you can use the cookie value for further processing
-            if (myCookie) {
-                const jwttoken = jwt.decode(myCookie);
+            if (token) {
+                const jwttoken = jwt.decode(token);
                 console.log('jwttt decoded', jwttoken);
 
                 const response = await AxiosInstance.get(`/users/${jwttoken?.useridneed}`, {
@@ -78,14 +65,15 @@ const AuthProvider = ({ children }) => {
     //     // }
 
 
-    // // get the user after reloade
-    // useEffect(() => {
-    //     fetchUser()
-    // }, [])
+    // get the user after reloade
+    useEffect(() => {
+        fetchUser()
+    }, [])
 
 
     //logout
     const LogoutUser = async () => {
+        console.log('logging out ')
         const response = await AxiosInstance.post('/auth/logout')
         Cookies.remove('accessToken');
         setUser(null)
