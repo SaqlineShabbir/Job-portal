@@ -12,7 +12,7 @@ export async function POST(NextRequest) {
 
         // Check if user exists
         const userExist = await User.findOne({ email });
-
+        console.log(userExist)
         if (!userExist) {
             return NextResponse.json({ error: "Authentication Failed please signup" }, { status: 404 });
         }

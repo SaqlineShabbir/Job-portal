@@ -19,11 +19,9 @@ const page = () => {
 
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:3000/api/login', {
+            const res = await axios.post('https://job-portal-kohl-six.vercel.app/api/login', {
                 email,
                 password
-            }, {
-                withCredentials: true,
             })
 
             console.log('res from login', res)

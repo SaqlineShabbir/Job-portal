@@ -1,6 +1,6 @@
 export default async function () {
 
-    const result = await fetch('http://localhost:3000/api/jobs?')
+    const result = await fetch('https://job-portal-kohl-six.vercel.app/api/jobs?')
 
 
     return result.json()
