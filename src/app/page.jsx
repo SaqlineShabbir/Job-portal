@@ -13,8 +13,8 @@ export default function Home() {
       <MaxWidthWrapper className="">
         <div className="">
 
-          {/* <LatestIntern />
-          <LatestJobs /> */}
+          <LatestIntern />
+          {/* <LatestJobs /> */}
 
           <FrequentlyAsked></FrequentlyAsked>
           <CompanyShow />
