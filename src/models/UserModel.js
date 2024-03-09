@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { PHOTO_PATH, EMAIL_REGEX, JWT_SECRET_KEY } from "../secret/secret.js";
+
 
 
 const userSchema = new mongoose.Schema({

@@ -12,57 +12,17 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    console.log('userrrr', user)
-
     // //   get the user from cookies and set to  user state
     const fetchUser = async () => {
-
-        console.log('biscuite', document.cookie)
         try {
-            console.log('fetch user called');
 
-            const token = Cookies.get('accessToken');
+            const response = await AxiosInstance.get(`/user`);
+            setUser(response?.data?.user);
 
-            console.log('token', token)
-            // Now you can use the cookie value for further processing
-            if (token) {
-                const jwttoken = jwt.decode(token);
-                console.log('jwttt decoded', jwttoken);
-
-                const response = await AxiosInstance.get(`/users/${jwttoken?.useridneed}`, {
-                    withCredentials: true,
-                });
-                console.log('res from coook', response);
-
-                setUser(response?.data?.data[0]);
-            } else {
-                // Handle the case where the cookie is not available
-                console.error('Access token cookie not found.');
-            }
         } catch (error) {
             console.error('Error fetching user data:', error);
         }
     };
-
-
-
-
-    //     console.log('fetch user called');
-
-    //     const token = Cookies.get('accessToken');
-    //     console.log('tok', token);
-    //     // if (token) {
-    //     const jwttoken = jwt.decode(token);
-    //     console.log('jwttt decoded', jwttoken);
-    //     try {
-    //         const response = await AxiosInstance.get(`/users/${jwttoken?.useridneed}`);
-    //         console.log('res from coook', response);
-
-    //         setUser(response?.data?.data[0]);
-    //     } catch (error) {
-    //         console.error('Error fetching user data:', error);
-    //     }
-    //     // }
 
 
     // get the user after reloade
