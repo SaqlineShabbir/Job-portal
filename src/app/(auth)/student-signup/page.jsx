@@ -15,7 +15,7 @@ const page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch('https://job-portall.onrender.com/api/v1/auth/sign-up', {
+            const response = await fetch('https://job-portal-kohl-six.vercel.app/api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

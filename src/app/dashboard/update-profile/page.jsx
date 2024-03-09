@@ -39,7 +39,7 @@ const UpdateUserForm = () => {
     // Send update request to the server
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(formData)
         if (image) {
             const config = {
                 headers: {
