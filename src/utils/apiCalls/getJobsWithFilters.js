@@ -1,6 +1,6 @@
 export default async function (queryString) {
 
-    const result = await fetch(`https://job-portall.onrender.com/api/v1/jobs?${queryString}`)
+    const result = await fetch(`http://localhost:3000/api/jobs?${queryString}`)
 
     return result.json()
 
