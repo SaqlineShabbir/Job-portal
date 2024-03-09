@@ -9,7 +9,7 @@ export async function GET(request) {
     try {
         const userId = await getCookieInfo(request)
         const user = await User.findOne({ _id: userId }).select("-password")
-        console.log(user)
+
         const response = NextResponse.json({
             message: 'user found',
             user
