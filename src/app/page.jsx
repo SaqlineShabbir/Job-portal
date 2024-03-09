@@ -14,7 +14,7 @@ export default function Home() {
         <div className="">
 
           <LatestIntern />
-          {/* <LatestJobs /> */}
+          <LatestJobs />
 
           <FrequentlyAsked></FrequentlyAsked>
           <CompanyShow />
