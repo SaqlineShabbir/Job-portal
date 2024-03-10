@@ -6,8 +6,8 @@ import path from "path";
 import cloudinary from "cloudinary";
 import Apply from "@/models/applymodel";
 import { connect } from "@/utils/connectDB/connectDb";
-//clowdinary
 
+//clowdinary
 cloudinary.config({
     cloud_name: process.env.CLOUDE_NAME,
     api_key: process.env.CLOUDE_API_KEY,

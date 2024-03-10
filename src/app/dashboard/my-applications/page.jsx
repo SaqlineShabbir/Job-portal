@@ -6,7 +6,7 @@ import React, { useContext, useEffect, useState } from 'react';
 const page = () => {
     const [applications, setApplications] = useState(null)
     const { LogoutUser, user } = useContext(AuthContext)
-    console.log('uu', applications)
+
 
     useEffect(() => {
         const fetchData = async () => {

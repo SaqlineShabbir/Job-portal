@@ -20,7 +20,7 @@ const InternDetails = ({ params }) => {
         const fetchData = async () => {
             try {
                 // const response = await AxiosInstance.get(`/jobs/${params.jobId}`);
-                const response = await fetch(`https://job-portal-kohl-six.vercel.app/api/jobs/${params.jobId}`);
+                const response = await fetch(`http://localhost:3000/api/jobs/${params.jobId}`);
                 const result = await response.json();
 
                 setJob(result?.data);

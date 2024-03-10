@@ -45,7 +45,7 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch(`https://job-portal-kohl-six.vercel.app/api/apply`, {
+            const response = await fetch(`http://localhost:3000/api/apply`, {
                 method: 'POST',
                 body: formData
             },);

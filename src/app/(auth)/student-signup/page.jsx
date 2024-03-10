@@ -15,7 +15,7 @@ const page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch('https://job-portal-kohl-six.vercel.app/api/signup', {
+            const response = await fetch('http://localhost:3000/api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const page = () => {
             });
 
             const result = await response.json();
-            console.log(result);
+
 
             if (response.ok) {
                 // Check for your specific success condition (statusText may vary)

@@ -4,9 +4,10 @@ import axios from 'axios';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import { AuthContext } from '@/context/AuthProvider';
 import Image from 'next/image';
+import toast from 'react-hot-toast';
 
 const UpdateUserForm = () => {
-    const { user } = useContext(AuthContext)
+    const { user, fetchUser } = useContext(AuthContext)
     const [userData, setUserData] = useState('')
     console.log('uuu', user)
     //hh
@@ -16,17 +17,25 @@ const UpdateUserForm = () => {
     const [image, setImage] = useState(userData?.photo)
     // console.log('user from p', user)
     useEffect(() => {
-        // Fetch user details for updating
-        AxiosInstance.get(`/users/${user?._id}`)
-            .then((response) => {
-                // console.log('res', response.data.data[0])
-                console.log('ll', response)
-                setUserData(response.data.data[0]);
-            })
-            .catch((error) => {
-                console.error('Error fetching user details:', error);
-            });
-    }, [user]);
+        const fetchTheUser = async () => {
+            try {
+                // Fetch user details for updating
+                const response = await fetch(`http://localhost:3000/api/user/${user?._id}`, {
+                    method: 'GET',
+
+                },);
+                const result = await response.json();
+
+                setUserData(result?.user);
+
+            } catch (error) {
+
+            }
+
+
+        }
+        fetchTheUser()
+    }, [user?._id]);
 
     const formData = new FormData()
 
@@ -37,24 +46,23 @@ const UpdateUserForm = () => {
         formData.append('photo', image)
     }
     // Send update request to the server
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData)
+
         if (image) {
-            const config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            };
-            AxiosInstance.put(`/users/update?id=${user?._id}`, formData, config)
-                .then((response) => {
-                    console.log('User updated successfully:', response.data);
-                    // Handle success, e.g., redirect to user profile
-                })
-                .catch((error) => {
-                    console.error('Error updating user:', error);
-                    // Handle error, e.g., display error message to the user
-                });
+            const response = await fetch(`http://localhost:3000/api/user/${user?._id}`, {
+                method: 'PATCH',
+                body: formData
+            },);
+            const result = await response.json();
+            if (result.status === 200) {
+                toast.success("Updated successfully")
+                fetchUser()
+            } else {
+                toast.error("could not update")
+            }
+
+
         } else {
 
             AxiosInstance.put(`/users/updateWithoutProfileImg?id=${user?._id}`, {

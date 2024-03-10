@@ -58,7 +58,7 @@ const Jobs = async () => {
         const response = await getJobsWithFilters(queryString);
 
         setJobs(response);
-        console.log(response)
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);

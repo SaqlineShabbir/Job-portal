@@ -2,9 +2,6 @@ import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const JobPagination = ({ currentPage, totalPages, handleNextClick, handlePreviousClick, isPreviousDisabled, isNextDisabled }) => {
-    console.log('currentpage', currentPage)
-
-
 
 
     return (

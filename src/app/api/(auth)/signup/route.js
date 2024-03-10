@@ -47,7 +47,7 @@ export async function POST(request) {
                 <p>Hello ${firstname},</p>
                 <p>Welcome to our platform! To activate your account, please click the link below:</p>
                 <p style="text-align: center; margin-top: 20px;">
-                    <a href="https://job-portal-kohl-six.vercel.app/verify/${token}" style="display: inline-block; padding: 10px 20px; background-color: #4caf50; color: #fff; text-decoration: none; border-radius: 5px;" target="_blank">Activate your account</a>
+                    <a href="http://localhost:3000/verify/${token}" style="display: inline-block; padding: 10px 20px; background-color: #4caf50; color: #fff; text-decoration: none; border-radius: 5px;" target="_blank">Activate your account</a>
                 </p>
                 
                 <p style="font-size: 12px; color: #777;">Note: This activation link will expire in 5 minutes.</p> <br/>
