@@ -1,6 +1,6 @@
 'use client'
 
-import ApplyinternModal from '@/components/modals/ApplyinternModal';
+import ApplyJobModal from '@/components/modals/ApplyJobModal';
 
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Link from 'next/link';
@@ -19,8 +19,11 @@ const InternDetails = ({ params }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await AxiosInstance.get(`/jobs/${params.jobId}`);
-                setJob(response?.data.data);
+                // const response = await AxiosInstance.get(`/jobs/${params.jobId}`);
+                const response = await fetch(`https://job-portal-kohl-six.vercel.app/api/jobs/${params.jobId}`);
+                const result = await response.json();
+
+                setJob(result?.data);
                 console.log(response?.data.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -104,7 +107,7 @@ const InternDetails = ({ params }) => {
                     <div className='flex justify-center '>
                         <button onClick={() => setOpenmodal(true)} className='bg-blue-400 px-5 py-1  my-10 text-white'>Apply Now</button>
                     </div>
-                    {openmodal && <ApplyinternModal setOpenmodal={setOpenmodal} job={job}></ApplyinternModal>}
+                    {openmodal && <ApplyJobModal setOpenmodal={setOpenmodal} job={job}></ApplyJobModal>}
                 </div>
 
             </div>

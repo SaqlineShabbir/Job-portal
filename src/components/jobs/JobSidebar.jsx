@@ -4,7 +4,7 @@ import { FaFilter } from 'react-icons/fa6';
 const InternSidebar = ({ setSearch, setLocationType, setJobtimetype }) => {
 
   return (
-    <div className='main bg-white rounded lg:w-[300px] h-full border px-5 py-5  lg:mt-[50px]'>
+    <div className='main bg-white rounded lg:w-[300px] w-full h-full border px-5 py-5  lg:mt-[50px]'>
       <div>
         <div className='flex text-xl justify-center py-5'>
 

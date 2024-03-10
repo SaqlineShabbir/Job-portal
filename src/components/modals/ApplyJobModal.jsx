@@ -32,38 +32,35 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
     const [resume, setResume] = useState('')
 
     const formData = new FormData()
-    formData.append('jobId', job?._id)
-    formData.append('userId', user?._id)
+    formData.append('job', job?._id)
+    formData.append('user', user?._id)
     formData.append('coverleter', coverleter)
     formData.append('resume', resume)
     formData.append('available', checkedvalue)
-    formData.append('userEmail', user?.email)
+    formData.append('email', user?.email)
 
 
     //post actual data to  backend
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            AxiosInstance.post('/applyjob', formData)
-                .then((res) => {
-                    console.log('res from apply', res);
-                    if (res.statusText === 'Created') {
+            const response = await fetch(`https://job-portal-kohl-six.vercel.app/api/apply`, {
+                method: 'POST',
+                body: formData
+            },);
+            const result = await response.json();
+            console.log(result)
 
-                        toast.success("Successfully! Applied")
-                        //make form empty
-                        setCoverleter('')
-                        setResume('')
-                        setCheckedValue('')
+            if (result?.success) {
+
+                toast.success("Applied successfully!")
 
 
-                    }
-                })
-                .catch((err) => {
-                    console.error('Error in applying for the job', err);
-                    toast.error(`Application failed because ${err.response?.data?.message}`);
+            } else {
+                toast.error(result.message)
+            }
 
-                });
         } catch (err) {
             console.error('Unexpected error:', err);
             toast.error(`Unexpected error occurred: ${err.message}`);

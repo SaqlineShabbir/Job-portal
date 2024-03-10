@@ -6,12 +6,16 @@ import React, { useContext, useEffect, useState } from 'react';
 const page = () => {
     const [applications, setApplications] = useState(null)
     const { LogoutUser, user } = useContext(AuthContext)
+    console.log('uu', applications)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await AxiosInstance.get(`/applyjob?email=${user?.email}`);
-                setApplications(response.data);
+                const response = await fetch(`https://job-portal-kohl-six.vercel.app/api/apply/${user?._id}`);
+                const result = await response.json();
+                // console.log('this is', result)
+
+                setApplications(result?.userapplications);
 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -20,7 +24,8 @@ const page = () => {
         };
 
         fetchData();
-    }, [user?.email]);
+    }, [user?._id]);
+
     return (
         <div className="container mx-auto">
 
@@ -40,12 +45,12 @@ const page = () => {
                     </thead>
                     <tbody>
                         {/* <!-- Example data, replace with dynamic data from your backend --> */}
-                        {applications?.data?.map((application) => (
+                        {applications?.map((application) => (
 
 
                             <tr key={application._id}>
-                                <td className="py-2 px-4 border-b">{application?.jobId?.companyName}</td>
-                                <td className="py-2 px-4 border-b">{application.jobId?.title.slice(0, 15)}</td>
+                                <td className="py-2 px-4 border-b">{application?.job?.companyName}</td>
+                                <td className="py-2 px-4 border-b">{application.job?.title.slice(0, 15)}</td>
                                 <td className="py-2 px-4 border-b">2024-01-04</td>
                                 <td className="py-2 px-4 mx-auto border-b">25</td>
                                 <td className="py-2 px-4 border-b">In Progress</td>

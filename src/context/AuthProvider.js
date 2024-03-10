@@ -16,8 +16,10 @@ const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
         try {
 
-            const response = await AxiosInstance.get(`/user`);
-            setUser(response?.data?.user);
+            const response = await fetch('https://job-portal-kohl-six.vercel.app/api/user');
+
+            const result = await response.json();
+            setUser(result?.user);
 
         } catch (error) {
             console.error('Error fetching user data:', error);

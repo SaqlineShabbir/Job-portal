@@ -119,8 +119,8 @@ const Jobs = async () => {
 
   return (
 
-    <div className='py-5 bg-gray-100 px-10 md:px-[200px] '>
-      <div><h2>Home - Internships </h2></div>
+    <div className='py-5 bg-gray-100  md:px-[200px] '>
+      <div><h2 className='pl-3 lg:pl-0'>Home - Internships </h2></div>
       <div className='py-20 lg:flex justify-center lg:space-x-10 '>
         <JobSidebar setSearch={setSearch} setLocationType={setLocationType} setJobtimetype={setJobtimetype}></JobSidebar>
         <div className='space-y-5 pt-20 md:pt-2'>
