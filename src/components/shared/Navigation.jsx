@@ -2,8 +2,8 @@
 
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import career from '/public/logo/career-removebg-preview.PNG'
-
+// import career from '/public/logo/career-removebg-preview.PNG'
+import { FcSearch } from "react-icons/fc";
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
 import { FiMenu } from "react-icons/fi";
@@ -32,13 +32,16 @@ export default function Navigation() {
           {/* comment */}
           <div className="flex items-center justify-between  md:block">
             <div className='cursor-pointer'>
-              <Link href='/'>
-                <Image
+              <Link className='flex' href='/'>
+                <FcSearch size={30} />
+                <p className='font-bold text-lg  '>Careers Hub</p>
+
+                {/* <Image
                   src={career}
                   width={120}
                   height={120}
                   alt="Logo"
-                />
+                /> */}
               </Link>
             </div>
             <div className="md:hidden">
