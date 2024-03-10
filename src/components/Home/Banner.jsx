@@ -32,7 +32,7 @@ const Banner = () => {
             </div>
 
             {/* 4 title section */}
-            <div className='bg-gradient-to-r from-slate-500 to-slate-800 py-10 lg:px-[200px] text-white lg:flex lg:justify-between lg:flex-row flex flex-col items-center justify-center mb-20 space-y-10 lg:space-y-0 mt-6'>
+            <div className='bg-gradient-to-r from-slate-500 to-slate-800 py-10 lg:px-[200px] text-white lg:flex lg:justify-between lg:flex-row flex flex-col items-center justify-center  space-y-10 lg:space-y-0 mt-[120px] mb-20'>
 
                 <div className='flex space-x-2'>
                     <p className='text-5xl font-bold text-white'>12</p>
