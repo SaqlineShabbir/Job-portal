@@ -138,7 +138,7 @@ export default function Navigation() {
                     </li>
 
                     <li className="hover:text-purple-600">
-                      <Link href="/dashboard/application" className="block px-2 py-1">
+                      <Link href="/dashboard/my-applications" className="block px-2 py-1">
                         My Applications
                       </Link>
                     </li>

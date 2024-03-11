@@ -3,6 +3,7 @@ import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const page = () => {
     const router = useRouter()
@@ -36,6 +37,9 @@ const page = () => {
             if (response.ok) {
                 // Check for your specific success condition (statusText may vary)
                 router.push('/');
+                toast.success('Sign up successfully please check your email')
+            } else {
+                toast.error("signup  failed")
             }
         } catch (err) {
             console.error('Error during form submission:', err);
@@ -51,6 +55,7 @@ const page = () => {
                     Student Sign-Up
                 </h1><br />
                 <form onSubmit={handleSubmit}>
+                    <Toaster />
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
                             <label htmlFor="firstName" className="block text-lg font-medium text-gray-600">

@@ -35,11 +35,23 @@ const AuthProvider = ({ children }) => {
 
     //logout
     const LogoutUser = async () => {
-        console.log('logging out ')
-        const response = await AxiosInstance.post('/logout')
-        Cookies.remove('accessToken');
-        setUser(null)
-    }
+        try {
+            const response = await fetch('http://localhost:3000/api/logout', {
+                method: "POST"
+            });
+            console.log(response);
+            if (response.ok) {
+                Cookies.remove('accessToken');
+                setUser(null);
+            } else {
+                console.error(`Logout failed with status: ${response.status}`);
+                // Handle the error as needed
+            }
+        } catch (error) {
+            console.error('Logout failed:', error);
+            // Handle the error as needed
+        }
+    };
 
     const authInfo = {
         user,
