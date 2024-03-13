@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaFilter } from 'react-icons/fa6';
 
-const InternSidebar = ({ setSearch, setLocationType }) => {
+const InternSidebar = ({ setSearch, setLocationType, setJobtimetype }) => {
 
   return (
     <div className='main bg-white rounded lg:w-[300px] h-full border px-5 py-5  lg:mt-[50px]'>
@@ -18,7 +18,7 @@ const InternSidebar = ({ setSearch, setLocationType }) => {
               Profile
             </label>
             <input
-              onChange={(e) => setSearch(e.target.value)}
+              onBlur={(e) => setSearch(e.target.value)}
               type="text"
               className="border border-gray-300 rounded-md w-full py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
               placeholder="Enter your full name"
@@ -52,8 +52,8 @@ const InternSidebar = ({ setSearch, setLocationType }) => {
               <input
                 type="checkbox"
                 className="form-checkbox h-5 w-5 text-blue-500 focus:outline-none focus:ring focus:border-blue-300"
-              //   checked={isChecked}
-              //   onChange={handleCheckboxChange}
+                //   checked={isChecked}
+                onChange={(e) => setJobtimetype(e.target.checked)}
               />
               <span className="text-sm font-medium text-gray-700">Part time</span>
             </label>

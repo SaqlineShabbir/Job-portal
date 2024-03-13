@@ -1,7 +1,7 @@
 'use client'
 
 import ApplyinternModal from '@/components/modals/ApplyinternModal';
-import PrivateRoute from '@/components/protectedRoutes/PrivateRoute';
+
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -21,6 +21,7 @@ const InternDetails = ({ params }) => {
             try {
                 const response = await AxiosInstance.get(`/jobs/${params.jobId}`);
                 setJob(response?.data.data);
+                console.log(response?.data.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 // Handle error, you might want to set an error state or display an error message.
@@ -77,7 +78,7 @@ const InternDetails = ({ params }) => {
                     <div className='md:flex   md:space-x-5 space-y-3  md:space-y-0'>
                         <div className='flex items-center space-x-1'>
                             <CiClock2 size={13} />
-                            <p>{job?.postedAt}</p>
+                            <p>{job?.createdAt.slice(0, 10)}</p>
                         </div>
                         <div>
                             <p className='bg-green-100 px-3 rounded-lg'>{job?.type}</p>
@@ -97,8 +98,8 @@ const InternDetails = ({ params }) => {
                         <p className='flex items-center'>website <FaExternalLinkAlt size={13} className='pl-1' /></p>
                         <p>{job?.aboutcompany}</p>
 
-                        <p className='text-lg pt-5'>About The internship</p>
-                        <p>{job?.aboutinternship}</p>
+                        <p className='text-lg pt-5'>About The Job</p>
+                        <p>{job?.aboutwork}</p>
                     </div>
                     <div className='flex justify-center '>
                         <button onClick={() => setOpenmodal(true)} className='bg-blue-400 px-5 py-1  my-10 text-white'>Apply Now</button>

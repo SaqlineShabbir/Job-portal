@@ -3,13 +3,14 @@
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import career from '../../assets/logos/career-removebg-preview.PNG'
-import Profile from "../../assets/images/defaultUser.png";
+
 import Image from 'next/image';
 import { AuthContext } from '@/context/AuthProvider';
 import { FiMenu } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import RegLog from '../buttons/RegLog';
 import NavBtn from '../buttons/NavBtn';
+import { FaUserCircle } from 'react-icons/fa';
 
 
 export default function Navigation() {
@@ -17,7 +18,7 @@ export default function Navigation() {
   const [navbar, setNavbar] = useState(false);
   const { LogoutUser, user } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  console.log('user from  navigation', user)
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -103,24 +104,24 @@ export default function Navigation() {
 
                   </div>
                 </li>
-              )};
+              )}
 
 
               {/* after user login access section PROFILE */}
               {user && (
-                <div className="relative h-full bg-white hover:shadow-md transition duration-300 border border-gray-200 rounded p-1">
-                  <div className="flex items-center space-x-1">
-                    <div>
-                      {/* <Image
+                <div className="relative h-full  transition duration-300  p-1">
+                  <div onClick={toggleDropdown} className="flex items-center  cursor-pointer space-x-1">
+                    <div >
+                      {user.photo ? <Image className='rounded-full h-10 w-10 border-pink-300 border-2'
                         src={user.photo}
                         alt='default user'
-                        width={30}
-                        height={30}
-                      /> */}
+                        width={40}
+                        height={40}
+                      /> : <FaUserCircle />}
                     </div>
 
                     <div className="group">
-                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 cursor-pointer" onClick={toggleDropdown}>
+                      <p className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 cursor-pointer" >
                         {user?.firstname}
                       </p>
                     </div>

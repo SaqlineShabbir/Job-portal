@@ -53,7 +53,7 @@ const FrequentlyAsked = () => {
 
       <div className=" flex flex-col  justify-center items-center py-10">
 
-        <h2 className="font-bolder font-semibold text-2xl  md:text-3xl  lg:text-4xl text-slate-500 lg:leading-9 md:leading-7 leading-9 underline decoration-blue-500 decoration-wavy">
+        <h2 className="font-bolder font-semibold text-2xl  md:text-3xl  lg:text-4xl lg:leading-9 md:leading-7 leading-9  decoration-blue-500 decoration-wavy">
           Frequently Asked Questions.
         </h2>
 

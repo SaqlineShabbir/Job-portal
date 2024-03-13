@@ -48,6 +48,16 @@ const ApplyinternModal = ({ setOpenmodal, job }) => {
             AxiosInstance.post('/applyjob', formData)
                 .then((res) => {
                     console.log('res from apply', res);
+                    if (res.statusText === 'Created') {
+
+                        toast.success("Successfully! Applied")
+                        //make form empty
+                        setCoverleter('')
+                        setResume('')
+                        setCheckedValue('')
+
+
+                    }
                 })
                 .catch((err) => {
                     console.error('Error in applying for the job', err);

@@ -15,24 +15,29 @@ const page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const result = await AxiosInstance.post('/auth/sign-up', {
-                firstname,
-                lastname,
-                email,
-                role: 'Student',
-                password
-            }, {
-                withCredentials: true
-            })
-            //navigate user to home page
-            console.log(result)
-            if (result.statusText === "Created") {
+            const response = await fetch('http://localhost:5000/api/v1/auth/sign-up', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // Use 'include' to send cookies
+                body: JSON.stringify({
+                    firstname,
+                    lastname,
+                    email,
+                    role: 'Student',
+                    password,
+                }),
+            });
 
-                router.push('/');
+            const result = await response.json();
 
+            if (response.ok) {
+                // Check for your specific success condition (statusText may vary)
+                // router.push('/');
             }
         } catch (err) {
-            console.log(err)
+            console.error('Error during form submission:', err);
         }
 
     }

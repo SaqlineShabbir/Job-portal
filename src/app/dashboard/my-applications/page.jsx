@@ -7,12 +7,12 @@ const page = () => {
     const [applications, setApplications] = useState(null)
     const { LogoutUser, user } = useContext(AuthContext)
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await AxiosInstance.get(`/applyjob?email=sabbir@gmail.com`);
+                const response = await AxiosInstance.get(`/applyjob?email=${user?.email}`);
                 setApplications(response.data);
+
             } catch (error) {
                 console.error('Error fetching data:', error);
                 // Handle error, you might want to set an error state or display an error message.
@@ -20,7 +20,7 @@ const page = () => {
         };
 
         fetchData();
-    }, []);
+    }, [user?.email]);
     return (
         <div className="container mx-auto">
 
@@ -44,7 +44,7 @@ const page = () => {
 
 
                             <tr key={application._id}>
-                                <td className="py-2 px-4 border-b">{application.jobId?.companyName}</td>
+                                <td className="py-2 px-4 border-b">{application?.jobId?.companyName}</td>
                                 <td className="py-2 px-4 border-b">{application.jobId?.title.slice(0, 15)}</td>
                                 <td className="py-2 px-4 border-b">2024-01-04</td>
                                 <td className="py-2 px-4 mx-auto border-b">25</td>

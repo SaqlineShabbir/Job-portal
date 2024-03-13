@@ -2,9 +2,6 @@
 
 import { AuthContext } from '@/context/AuthProvider';
 import { AxiosInstance } from '@/utils/axios/axiosInstance';
-import Cookies from 'js-cookie';
-
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import React, { useContext, useState } from 'react';
@@ -20,6 +17,7 @@ const page = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault()
+
         try {
             const res = await AxiosInstance.post('/auth/login', {
                 email,
@@ -27,19 +25,18 @@ const page = () => {
             }, {
                 withCredentials: true
             })
-
-
+            console.log(res)
             if (res.data.status === 'success') {
+                if (res?.status === 200) {
+                    // Retrieve the saved path from session storage
+                    const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
+                    toast.success("Logged in successfully!")
+                    // Redirect the user to the saved or default path
+                    router.push("/dashboard");
+                    fetchUser()
+                }
 
-
-                // Retrieve the saved path from session storage
-                const nextPath = sessionStorage.getItem('nextPath') || '/dashboard';
-                toast.success("Logged in successfully!")
-                // Redirect the user to the saved or default path
-                router.push("/dashboard");
-                fetchUser()
             }
-
         } catch (err) {
             toast.error(`Authentication failed cause ${err.message}`)
         }
