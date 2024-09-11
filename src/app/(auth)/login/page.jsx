@@ -30,6 +30,7 @@ const page = () => {
         // Redirect the user to the saved or default path
         router.push("/dashboard");
         fetchUser();
+        //
       }
     } catch (err) {
       toast.error(`Authentication failed cause ${err.message}`);
