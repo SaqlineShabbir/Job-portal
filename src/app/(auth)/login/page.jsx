@@ -96,7 +96,7 @@ const page = () => {
         <p>
           New to here ?{" "}
           <Link
-            href="/signup"
+            href="/student-signup"
             className="text-md text-blue-500 font-mono cursor-pointer hover:underline duration-500"
           >
             Register
