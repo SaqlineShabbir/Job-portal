@@ -1,7 +1,6 @@
 "use client";
 
 import { AuthContext } from "@/context/AuthProvider";
-import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
@@ -17,16 +16,22 @@ const page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "https://job-portal-kohl-six.vercel.app/api/login",
-        {
+      const res = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           email,
           password,
-        }
-      );
+        }),
+      });
 
-      console.log("res from login", res);
-      if (res?.status === 200) {
+      const data = await res.json();
+
+      console.log("res from login", data);
+
+      if (res.status === 200) {
         // Retrieve the saved path from session storage
         const nextPath = sessionStorage.getItem("nextPath") || "/dashboard";
         toast.success("Logged in successfully!");
