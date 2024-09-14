@@ -1,6 +1,5 @@
 "use client";
 
-import { AxiosInstance } from "@/utils/axios/axiosInstance";
 import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
 
@@ -13,7 +12,9 @@ const AuthProvider = ({ children }) => {
   // //   get the user from cookies and set to  user state
   const fetchUser = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/user");
+      const response = await fetch(
+        "https://job-portal-kohl-six.vercel.app/api/user"
+      );
 
       const result = await response.json();
       setUser(result?.user);
@@ -29,10 +30,28 @@ const AuthProvider = ({ children }) => {
 
   //logout
   const LogoutUser = async () => {
-    console.log("logging out ");
-    const response = await AxiosInstance.post("/logout");
-    Cookies.remove("accessToken");
-    setUser(null);
+    console.log("logging out");
+
+    try {
+      const response = await fetch(
+        "https://job-portal-kohl-six.vercel.app/api/logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        Cookies.remove("accessToken");
+        setUser(null);
+      } else {
+        console.error("Failed to log out");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   const authInfo = {

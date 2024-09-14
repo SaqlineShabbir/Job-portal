@@ -1,16 +1,12 @@
 "use client";
 import { AuthContext } from "@/context/AuthProvider";
 import Image from "next/image";
-// import { redirect } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+
 const UpdateUserForm = () => {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState("");
-
-  // console.log("uuu", user);
-  // if (!user) {
-  //   redirect("/login");
-  // }
+  console.log("uuu", user);
   //hh
   const [firstname, setFirstName] = useState(userData?.firstname);
   const [lastname, setLastName] = useState(userData?.lastname);

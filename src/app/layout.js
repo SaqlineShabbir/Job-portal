@@ -30,7 +30,8 @@ export default function RootLayout({ children }) {
             {!showNavbar && <Navigation />}
             <div className="flex-grow flex-1"> {children}</div>
             {/* Footer */}
-            <Footer />
+
+            {!showNavbar && <Footer />}
           </main>
         </AuthProvider>
       </body>

@@ -11,7 +11,7 @@ const page = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/apply/${user?._id}`
+          `https://job-portal-kohl-six.vercel.app/api/apply/${user?._id}`
         );
         const result = await response.json();
         // console.log('this is', result)

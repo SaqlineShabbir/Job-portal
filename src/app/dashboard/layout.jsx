@@ -54,6 +54,21 @@ export default function Layout({ children }) {
           </div>
           <ul className="py-10">
             <li className="mb-4 group">
+              <Link href="/dashboard/profile">
+                <div
+                  className={`flex cursor-pointer space-x-2 items-center px-5 py-3 ${
+                    activeLink === "/dashboard/profile"
+                      ? "bg-blue-50 text-blue-400 border-r-4 border-blue-400"
+                      : "hover:bg-gray-100 text-gray-700"
+                  }`}
+                  onClick={() => handleLinkClick("/dashboard/profile")}
+                >
+                  <FaUserEdit size={26} />
+                  <span className="ml-2">Profile</span>
+                </div>
+              </Link>
+            </li>
+            <li className="mb-4 group">
               <Link href="/dashboard/my-applications">
                 <div
                   className={`flex cursor-pointer space-x-2 items-center px-5 py-3 ${
@@ -83,21 +98,7 @@ export default function Layout({ children }) {
                 </div>
               </Link>
             </li>
-            <li className="mb-4 group">
-              <Link href="/dashboard/update-profile">
-                <div
-                  className={`flex cursor-pointer space-x-2 items-center px-5 py-3 ${
-                    activeLink === "/dashboard/update-profile"
-                      ? "bg-blue-50 text-blue-400 border-r-4 border-blue-400"
-                      : "hover:bg-gray-100 text-gray-700"
-                  }`}
-                  onClick={() => handleLinkClick("/dashboard/update-profile")}
-                >
-                  <FaUserEdit size={26} />
-                  <span className="ml-2">Update Profile</span>
-                </div>
-              </Link>
-            </li>
+
             <li className="mb-4 group">
               <Link href="/dashboard/post-job">
                 <div
@@ -114,7 +115,7 @@ export default function Layout({ children }) {
               </Link>
             </li>
             <li className="mb-4 group">
-              <Link href="/dashboard/edit-resume">
+              <Link href="/dashboard/resume">
                 <div
                   className={`flex cursor-pointer space-x-2 items-center px-5 py-3 ${
                     activeLink === "/dashboard/edit-resume"

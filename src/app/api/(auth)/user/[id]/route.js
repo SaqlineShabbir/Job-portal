@@ -1,13 +1,12 @@
 import User from "@/models/UserModel";
 import { connect } from "@/utils/connectDB/connectDb";
-import { getCookieInfo } from "@/utils/getCookieInfo";
+
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export async function GET(request, { params }) {
   connect();
   try {
-    const userId = await getCookieInfo(request);
-    const user = await User.findOne({ _id: userId }).select("-password");
+    const user = await User.findOne({ _id: params.id }).select("-password");
 
     const response = NextResponse.json({
       message: "user found",

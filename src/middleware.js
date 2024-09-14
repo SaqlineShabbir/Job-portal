@@ -1,46 +1,23 @@
-import { NextResponse, NextRequest } from 'next/server';
-;
-
+import { NextResponse } from "next/server";
+import { PUBLIC_ROUTES, ROOT } from "./utils/midRoute";
 export async function middleware(request) {
-    const path = request.nextUrl.pathname;
-    const isPublicPath = path === '/login' || path === '/signup' || path === '/';
-    const accessToken = request?.cookies.get('accessToken')?.value || '';
-    const admin = request.cookies.get('Admin')?.value || '';
-    const restricted = path === '/dashboard/manage-job' || path === '/dashboard/add-job' || path == '/dashboard/make-admin'
+  const path = request.nextUrl.pathname;
+  const { nextUrl } = request;
+  const accessToken = request?.cookies.get("accessToken")?.value || "";
 
+  //   console.log("access", accessToken, path);
 
-    const onlyPublicPath = path === '/login' || path === '/signup'
+  const isPublicRoute =
+    PUBLIC_ROUTES.find((route) => nextUrl.pathname.startsWith(route)) ||
+    nextUrl.pathname === ROOT;
+  if (!accessToken && !isPublicRoute) {
+    return Response.redirect(new URL(LOGIN, nextUrl));
+  }
 
-    if (onlyPublicPath && accessToken) {
-        return NextResponse.redirect(new URL('/', request.nextUrl))
-    }
-
-    if (!isPublicPath && !accessToken) {
-        // User is not authenticated and trying to access a private path
-        return NextResponse.redirect(new URL('/login', request.nextUrl).toString());
-    }
-    if (restricted && !admin) {
-        // User is not authenticated and trying to access a private path
-        return NextResponse.redirect(new URL('/quizboard', request.nextUrl).toString());
-    }
-
-
-    // Continue processing if it's a public path or if the user has a valid accessToken
-    return NextResponse.next()
-
+  // Continue processing if it's a public path or if the user has a valid accessToken
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: [
-        '/',
-        '/dashboard',
-        '/login',
-        '/signup',
-        '/dashboard/manage-job',
-        '/dashboard/add-job',
-        '/dashboard/make-admin'
-
-
-
-    ],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

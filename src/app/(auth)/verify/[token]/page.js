@@ -12,7 +12,7 @@ const VerifyToken = ({ params }) => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        await axios.post("http://localhost:3000/api/verify", {
+        await axios.post("https://job-portal-kohl-six.vercel.app/api/verify", {
           token: params.token,
         });
 

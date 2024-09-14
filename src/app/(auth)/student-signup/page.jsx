@@ -13,20 +13,23 @@ const page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // Use 'include' to send cookies
-        body: JSON.stringify({
-          firstname,
-          lastname,
-          email,
-          role: "Student",
-          password,
-        }),
-      });
+      const response = await fetch(
+        "https://job-portal-kohl-six.vercel.app/api/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // Use 'include' to send cookies
+          body: JSON.stringify({
+            firstname,
+            lastname,
+            email,
+            role: "Student",
+            password,
+          }),
+        }
+      );
 
       const result = await response.json();
       console.log(result);

@@ -65,7 +65,7 @@ export default function Navigation() {
                 </li>
 
                 <li>
-                  <NavBtn category="course" name="Courses" />
+                  <NavBtn category="dashboard" name="Dashboard" />
                 </li>
               </div>
 
