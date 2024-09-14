@@ -64,9 +64,11 @@ export default function Navigation() {
                   <NavBtn category="jobs" name="Jobs" />
                 </li>
 
-                <li>
-                  <NavBtn category="dashboard" name="Dashboard" />
-                </li>
+                {user && (
+                  <li>
+                    <NavBtn category="dashboard" name="Dashboard" />
+                  </li>
+                )}
               </div>
 
               {/* verticall */}
