@@ -5,8 +5,6 @@ export async function middleware(request) {
   const { nextUrl } = request;
   const accessToken = request?.cookies.get("accessToken")?.value || "";
 
-  //   console.log("access", accessToken, path);
-
   const isPublicRoute =
     PUBLIC_ROUTES.find((route) => nextUrl.pathname.startsWith(route)) ||
     nextUrl.pathname === ROOT;
